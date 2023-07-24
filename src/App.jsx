@@ -2,7 +2,9 @@ import { useState } from 'react'
 import Login from './component/user/Login'
 import { Route, Routes } from 'react-router-dom'
 import Header from './component/Header'
-import SignUp from './component/user/SignUp'
+import TsignUp from './component/user/TsignUp'
+import SsignUp from './component/user/SsignUp'
+import Home from './component/Home'
 
 function App() {
 
@@ -22,11 +24,12 @@ function App() {
             {/* <Route path="/addClass" element={<Add Class/>} /> */}
          
            
-            {/* <Route path="/edit/:id" element={<EditClass />} />            */}
+            {/* <Route path="/edit/:id" element={<EditClass />} />*/}
             <Route path="/user/login" element={<Login />} />
-            {/* <Route path="/classes" element={<Classes />} /> */}
+            <Route path="/" element={<Home/>} />
             {/* <Route path="/user/profile" element={<Profile/>} /> */}
-            <Route path="/user/login/register" element={<SignUp/>} />
+            <Route path="/teacher/login/register" element={<TsignUp/>} />
+            <Route path="/student/login/register" element={<SsignUp/>} />
           
           
           </Routes>

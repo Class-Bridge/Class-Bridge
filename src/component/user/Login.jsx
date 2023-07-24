@@ -1,9 +1,18 @@
 import { ErrorMessage, Field, Form, Formik } from 'formik'
 import * as Yup from "yup";
-import React, { useState } from 'react'
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom';
+import { useSloginMutation, useTloginMutation } from '../../store/api/AuthSlice';
 
 const Login = () => {
+
+  const navigate = useNavigate();
+
+  const [ tlogin, { error = {}, success } ] = useTloginMutation();
+  const [ slogin, { err = {} } ] = useSloginMutation();
+
+ // console.log(tlogin);
+
 
     const [loginErrror, setLoginError] = useState(null);
 
@@ -16,6 +25,47 @@ const Login = () => {
     email: Yup.string().email("Invalid email format").required("Email is required"),
     password: Yup.string().required("Password is required"),
   });
+
+
+  const handleSubmit =  async (values) => {
+
+
+
+    // if(success){
+
+    await tlogin({
+      email: values.email,
+      password: values.password,
+    })
+    .unwrap().then(() => {
+      navigate("/");
+      // window.location.reload();
+    });
+  // }else{
+
+  //   slogin({
+  //     email: values.email,
+  //     password: values.password,
+  //    })
+   
+    //  .unwrap().then(() => {
+    //   navigate("/");
+    //   window.location.reload();
+    // });
+  // }
+
+  };
+
+  useEffect(() => {
+    if (error.status === 401) {
+      setLoginError("Invalid email or password");
+    }
+
+    if (error.status === 500) {
+      setLoginError("Something went wrong, please try again later");
+    }
+  }, [error]);
+
 
 
   return (
@@ -38,7 +88,7 @@ const Login = () => {
         <Formik
           initialValues={initialValues}
           validationSchema={validationSchema}
-          
+          onSubmit={handleSubmit}
         >
 
           <Form  className='w-1/2 mx-auto justify-center items-center'> 
@@ -84,9 +134,11 @@ const Login = () => {
             </button>
             <div>
             <span className='text-sm mb-5'>Forgo Your Password? </span>
-            
-            <Link to ='/user/login/register' className="text-blue-500 mx-5 font-bold">Sign Up</Link>
             </div>
+            <div className="mt-1">
+            <Link to ='/teacher/login/register' className="text-blue-500 mx-5 ">Create an Account</Link>
+            </div>
+           
           </Form>
         </Formik>
         

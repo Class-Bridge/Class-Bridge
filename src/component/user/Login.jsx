@@ -3,18 +3,19 @@ import * as Yup from "yup";
 import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import { useSloginMutation, useTloginMutation } from '../../store/api/AuthSlice';
+import { retry } from '@reduxjs/toolkit/dist/query';
+
 
 const Login = () => {
 
   const navigate = useNavigate();
 
-  const [ tlogin, { error = {}, success } ] = useTloginMutation();
+  const [ tlogin, { error = {}, success } ] = useTloginMutation(); 
   const [ slogin, { err = {} } ] = useSloginMutation();
 
  // console.log(tlogin);
 
-
-    const [loginErrror, setLoginError] = useState(null);
+  const [loginErrror, setLoginError] = useState(null);
 
   const initialValues = {
     email: "",
@@ -27,32 +28,33 @@ const Login = () => {
   });
 
 
-  const handleSubmit =  async (values) => {
+  const handleSubmit =  (values) => {
 
 
 
-    // if(success){
+    if (!loginErrror){
 
-    await tlogin({
+    tlogin({
       email: values.email,
-      password: values.password,
+      password: values.password
     })
     .unwrap().then(() => {
-      navigate("/");
-      // window.location.reload();
+      navigate("/home");
+        window.location.reload();
     });
-  // }else{
 
-  //   slogin({
-  //     email: values.email,
-  //     password: values.password,
-  //    })
-   
-    //  .unwrap().then(() => {
-    //   navigate("/");
-    //   window.location.reload();
-    // });
-  // }
+    }if(!loginErrror){
+
+    slogin({
+      email: values.email,
+      password: values.password, 
+     })
+     .unwrap().then(() => {
+      navigate("/home");
+      window.location.reload();
+    });
+  }
+  
 
   };
 
@@ -65,6 +67,17 @@ const Login = () => {
       setLoginError("Something went wrong, please try again later");
     }
   }, [error]);
+  
+  useEffect(() => {
+    if (error.status === 401) {
+      setLoginError("Invalid email or password");
+    }
+
+    if (error.status === 500) {
+      setLoginError("Something went wrong, please try again later");
+    }
+  }, [err]);
+
 
 
 
@@ -136,7 +149,7 @@ const Login = () => {
             <span className='text-sm mb-5'>Forgo Your Password? </span>
             </div>
             <div className="mt-1">
-            <Link to ='/teacher/login/register' className="text-blue-500 mx-5 ">Create an Account</Link>
+            <Link to ='/teacher/login/register' className="text-blue-500 mx-5 ">Create an account</Link>
             </div>
            
           </Form>

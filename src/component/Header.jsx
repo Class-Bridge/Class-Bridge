@@ -3,26 +3,27 @@ import Cookies from 'js-cookie';
 import { Link, useNavigate } from 'react-router-dom'
 
 const Header = () => {
-  const [userInfo, setUserInfo] = useState(null);
+  const [user, setUser] = useState(null);
 
   const navigate = useNavigate();
 
   useEffect(() => {
     const token = Cookies.get('token');
     if (token) {
-      setUserInfo(token);
+      setUser(token);
     }
-  }, [userInfo]);
+  }, [user]);
 
-  console.log(userInfo);
+ 
 
 
   const handleLogout = () => {
     try {
       Cookies.remove('token');
-      setUserInfo(null);
+      setUser(null);
+      navigate('/');
       window.location.reload();
-      navigate('/user/login');
+      
     } catch (error) {
       console.log('Logout error:', error);
       // Handle error case if needed
@@ -31,16 +32,26 @@ const Header = () => {
 
   return (
     
-    <div className='flex justify-end items-center p-2 bg-gray-200 w-full '>
-    <div className='mr-20'>
+    <div className='flex justify-between items-center p-2 bg-gray-200 w-full '>
 
-      <Link to ='/' className='p-2 text-yellow-700 font-semibold'> Home</Link >
+<Link to ='#' ><div className='ml-[80px] p-2'>
+   <span className='bg-red-500 p-2 rounded-full font-semibold text-white px-3'>0</span></div></Link>
+
+
+    <div className='mr-20'>
+      
+{user &&
+<>
+      <Link to ='/home' className='p-2 
+      text-yellow-700 font-semibold'> Home</Link >
      <Link to ='addClass'  className='p-2 text-yellow-700 font-semibold'> Add Class</Link>
      <Link to ='user/profile' className='p-2 text-yellow-700 font-semibold '> Profile</Link >
      {/* //<Link onClick={handleLogout}className='p-2 text-yellow-700 font-semibold'>Logout</Link> */}
-     <Link to ='user/login'  className='p-2 text-yellow-700 font-semibold'>Login </Link>
+     {/* <Link to ='/'  className='p-2 text-yellow-700 font-semibold'>Login </Link> */}
+     
      <Link onClick={handleLogout}className='p-2 text-yellow-700 font-semibold'>Logout</Link>
-
+     </>
+}
       </div>
     </div>
   )

@@ -6,13 +6,11 @@ import Cookies from "js-cookie";
 // Helper function to set the token in the browser's cookie
 
 const setTokenCookie = (token) => {
-   Cookies.set("token", token, { expires: 3 }); // Set the token cookie with a 3-day expiration
+   Cookies.set("token", token, { expires: 1 });  
   };
 
 
-//   const setTokenCookie = (token) => {
-//     Cookies.set("token", token, ); 
-//   };
+
 export const authSlice = createApi({
     reducerPath: 'authSlice',
     baseQuery: fetchBaseQuery({
@@ -50,6 +48,15 @@ export const authSlice = createApi({
           body: user,
         }),
         invalidatesTags: ["User"],
+         // on success we want to set the token cookie
+         onQueryStarted: async (arg, { queryFulfilled }) => {
+          try {
+              const result = await queryFulfilled; 
+              setTokenCookie(result.data.token);
+          } catch (error) {
+              console.log(error);
+          }
+      },
     }),
       //Student login
       slogin: builder.mutation({
@@ -60,17 +67,18 @@ export const authSlice = createApi({
         }),
 
         invalidatesTags: ["student"],
+
+         // on success we want to set the token cookie
+         onQueryStarted: async (arg, { queryFulfilled }) => {
+          try {
+              const result = await queryFulfilled; 
+              setTokenCookie(result.data.token);
+          } catch (error) {
+              console.log(error);
+          }
+      },
     }),
-        // on success we want to set the token cookie
-        onQueryStarted: async (arg, { queryFulfilled }) => {
-              try {
-                  const result = await queryFulfilled;
-                  console.log(result);
-                  setTokenCookie(result.data.token);
-              } catch (error) {
-                  console.log(error);
-              }
-          },
+       
       
 
     })

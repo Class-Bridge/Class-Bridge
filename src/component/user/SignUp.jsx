@@ -5,27 +5,23 @@ import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { useSsignUpMutation, useTsignUpMutation } from '../../store/api/AuthSlice';
 
 
-const SsignUp = () => {
+const SignUp = () => {
 
 
   const navigate = useNavigate();
 
-  
-  const [ ssignUp, { error = {} } ] = useSsignUpMutation();
+  const [ tsignUp, { error = {} } ] = useTsignUpMutation();
+  const [ ssignUp, { err = {} } ] = useSsignUpMutation();
 
   const [ registerError, setRegisterError ] = useState(null);
-;
-
-  const [ role, setRole ] = useState();
-  
 
     const initialValues = {
         firstName: "",
         lastName: "",
         email: "",
-        password: "",
+        role: "",
+        password: "", 
       };
-    
       const validationSchema = Yup.object({
         firstName: Yup.string().required("First Name is required"),
         lastName: Yup.string().required("Last Name is required"),
@@ -36,22 +32,30 @@ const SsignUp = () => {
 
       const handleSubmit = (values) => {
 
+       console.log(values);
 
-        console.log(values);
-
-        
-          ssignUp({
+        if(values.role ==="Teacher"){
+          tsignUp({
             
-            firt_name: values.firstName,
+            first_name: values.firstName,
             last_name: values.lastName,
             email: values.email,
             password: values.password,
-          }).unwrap().then(() => {
-            navigate ("/user/login");
-          }
+             }).unwrap().then(() => {
+              navigate ("/user/login");
+            });
 
-          );
- 
+        }else{
+          ssignUp({
+            
+            first_name: values.firstName,
+            last_name: values.lastName,
+            email: values.email,
+            password: values.password,
+             }).unwrap().then(() => {
+              navigate ("/user/login");
+            });
+        }   
       };
 
       useEffect(() => {
@@ -64,15 +68,15 @@ const SsignUp = () => {
         }
       }, [error]);
 
-      // useEffect(() => {
-      //   if (error.status === 409) {
-      //     setRegisterError("User already exists");
-      //   };
+      useEffect(() => {
+        if (error.status === 409) {
+          setRegisterError("User already exists");
+        };
     
-      //   if (error.status === 500) {
-      //     setRegisterError("Something went wrong, please try again later");
-      //   }
-      // }, [err]);
+        if (error.status === 500) {
+          setRegisterError("Something went wrong, please try again later");
+        }
+      }, [err]);
       
     
      
@@ -80,7 +84,7 @@ const SsignUp = () => {
   return (
    <div className="w-full flex flex-row items-center justify-center">
       <div className="mx-auto rounded-lg bg-white p-10 shadow md:w-1/2 lg:w-1/2">
-        <h4 className="mb-10 text-2xl font-bold">Student Registeration</h4>
+        <h4 className="mb-10 text-2xl font-bold">Registeration Form </h4>
         <Formik
           initialValues={initialValues}
           validationSchema={validationSchema}
@@ -132,7 +136,7 @@ const SsignUp = () => {
                 className="text-red-500"
               />
             </div>
-            {/* <div className="mb-5">
+            <div className="mb-5">
             <Field  as="select" name="role" id='role'
              placeholder='Role' className="w-full rounded-3xl border border-gray-300 p-3 shadow"
              >
@@ -146,7 +150,7 @@ const SsignUp = () => {
                 component="div"
                 className="text-red-500"
               />
-            </div> */}
+            </div>
             <div className="mb-5">
               <Field
                 type="password"
@@ -175,4 +179,4 @@ const SsignUp = () => {
   )
 }
 
-export default SsignUp
+export default SignUp

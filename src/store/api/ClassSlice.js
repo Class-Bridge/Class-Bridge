@@ -1,36 +1,41 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import Cookies from 'js-cookie';
-import BaseUrl from './BaseUrl';
+import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import Cookies from "js-cookie";
+import BaseUrl from "./BaseUrl";
 
 const getToken = () => {
-    return Cookies.get("token");
-  };
+  return Cookies.get("token");
+};
 
 export const ClassApi = createApi({
-    reducerPath: 'ClassApi',
-    baseQuery: fetchBaseQuery({ 
-        baseUrl: BaseUrl,
+  reducerPath: "ClassApi",
+  baseQuery: fetchBaseQuery({
+    baseUrl: BaseUrl,
     prepareHeaders: (headers) => {
       const token = getToken();
       if (token) {
         headers.set("Authorization", `Bearer ${token}`);
       }
       return headers;
-    }, 
+    },
+  }),
+  tagTypes: ["Classes"],
 
+  endpoints: (builder) => ({
+    getClasses: builder.query({
+      query: () => ({
+        url: "classes",
+        method: "GET",
+      }),
     }),
-    tagTypes: ['Classes'],
 
-    endpoints: (builder) => ({
-        getClasses: builder.query({
-            query: () => '/classes',
-            providesTags: ['Classes'],
-        }),
+    addClass: builder.mutation({
+      query: () => ({
+        url: "/classes",
+        method: "POST",
+        body: "classes",
+      }),
+    }),
+  }),
+});
 
-
-
-
-
-    })
-})
-
+export const { useGetClassesQuery, useAddClassMutation } = ClassApi;

@@ -174,6 +174,8 @@ function Courses() {
               title={course.title}
               description={course.description}
               progress={course.progress}
+              key={course.id}
+              courseId={course.id}
             />
           </div>
         ))}

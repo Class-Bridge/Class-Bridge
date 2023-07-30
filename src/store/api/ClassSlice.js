@@ -26,16 +26,34 @@ export const ClassApi = createApi({
         url: "classes",
         method: "GET",
       }),
+      providesTags: ["Classes"],
     }),
 
     addClass: builder.mutation({
-      query: () => ({
-        url: "/classes",
+      query: (newClass) => ({
+        url: "classes",
         method: "POST",
-        body: "classes",
+        body: newClass,
       }),
+      invalidatesTags: ["Classes"],
     }),
+    updateClass: builder.mutation({
+      query: ({ class_id, updatedClass }) => ({
+        url: `classes/${class_id}`,
+        method: 'PUT',
+        body: updatedClass,
+    }),
+      invalidatesTags: ["Classes"],
+    }),
+    deleteClass: builder.mutation({
+      query: ( class_id ) => ({
+        url: `classes/${class_id}`,
+        method: 'DELETE',
+    }),
+      invalidatesTags: ["Classes"],
+    }),
+    
   }),
 });
 
-export const { useGetClassesQuery, useAddClassMutation } = ClassApi;
+export const { useGetClassesQuery, useAddClassMutation, useUpdateClassMutation, useDeleteClassMutation}=ClassApi;

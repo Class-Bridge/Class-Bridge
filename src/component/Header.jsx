@@ -42,8 +42,7 @@ const Header = () => {
       
 {user &&
 <>
-      <Link to ='/home' className='p-2 
-      text-yellow-700 font-semibold'> Home</Link >
+     
      <Link to ='addClass'  className='p-2 text-yellow-700 font-semibold'> Add Class</Link>
      <Link to ='user/profile' className='p-2 text-yellow-700 font-semibold '> Profile</Link >
      {/* //<Link onClick={handleLogout}className='p-2 text-yellow-700 font-semibold'>Logout</Link> */}

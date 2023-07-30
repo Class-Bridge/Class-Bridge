@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faSearch,
@@ -15,16 +15,47 @@ import {
   faPlay,
   faCog,
   faSignOutAlt,
+  faHome,
+  faPlus
 } from "@fortawesome/free-solid-svg-icons";
 
 import Classes from "./Classes";
 // import { courses } from "./Courses";
 import Pagination from "./Pagination";
+import { Link, useNavigate } from "react-router-dom";
+import Cookies from "js-cookie";
 
 function Home() {
   const [searchTerm, setSearchTerm] = useState("");
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [user, setUser] = useState(null);
+
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const token = Cookies.get('token');
+    if (token) {
+      setUser(token);
+    }
+  }, [user]);
+
+ 
+
+
+  const handleLogout = () => {
+    try {
+      Cookies.remove('token');
+      setUser(null);
+      navigate('/');
+      window.location.reload();
+      
+    } catch (error) {
+      console.log('Logout error:', error);
+      // Handle error case if needed
+    }
+  };
 
   const handleSearch = (e) => {
     setSearchTerm(e.target.value);
@@ -66,10 +97,10 @@ function Home() {
       {/* Left Sidebar Overlay */}
       {isSidebarOpen && isSmallScreen && (
         <div
-          className="fixed z-40 inset-0 bg-black opacity-50"
+          className="fixed z-40  bg-black opacity-50"
           onClick={closeSidebarOverlay}
         ></div>
-      )}
+      )} 
 
       {/* Left Sidebar */}
       <aside
@@ -90,19 +121,31 @@ function Home() {
             <span className="text-gray-600 text-xs">john.doe@example.com</span>
           </div>
         </div>
-        <nav className="mt-6 mx-4 flex-1">
+        <nav className="mt-6 mx-4 ">
           <ul className="space-y-4">
-            <li className="hover:bg-gray-100 hover:text-black px-4 py-2 rounded-full">
+            <li>
+          <Link to ='/home'className="hover:bg-gray-100 hover:text-black px-4 py-2 rounded-full"> 
+          <FontAwesomeIcon icon={faHome} className="mr-2" />
+          Home</Link >
+          </li>
+            {/* <li className="hover:bg-gray-100 hover:text-black px-4 py-2 rounded-full">
               <FontAwesomeIcon icon={faBookOpen} className="mr-2" />
               Class Overview
-            </li>
+            </li> */}
+            
             <li className="hover:bg-gray-100 hover:text-black px-4 py-2 rounded-full">
               <FontAwesomeIcon icon={faSchoolFlag} className="mr-2" />
               Upcoming Classes
             </li>
-            <li className="hover:bg-gray-100 px-4 hover:text-black py-2 rounded-full">
+
+            {/* <li className="hover:bg-gray-100 px-4 hover:text-black py-2 rounded-full">
               <FontAwesomeIcon icon={faCheck} className="mr-2" />
               Grades
+            </li> */}
+            <li>
+            <Link to ='/addClass'className="hover:bg-gray-100 hover:text-black px-4 py-2 rounded-full">
+            <FontAwesomeIcon icon={faPlus} className="mr-2" />
+               Add Class</Link>
             </li>
             <li className="hover:bg-gray-100 hover:text-black px-4 py-2 rounded-full">
               <FontAwesomeIcon icon={faUserGroup} className="mr-2" />
@@ -110,7 +153,7 @@ function Home() {
             </li>
             <li className="hover:bg-gray-100 hover:text-black px-4 py-2 rounded-full">
               <FontAwesomeIcon icon={faNoteSticky} className="mr-2" />
-              Notes
+              My Classes
             </li>
           </ul>
         </nav>
@@ -121,10 +164,10 @@ function Home() {
               <FontAwesomeIcon icon={faCog} className="mr-2" />
               <span>Settings</span>
             </li>
-            <li className="hover:bg-gray-100 hover:text-black px-4 py-2 rounded-full flex items-center">
+            <li>
               <FontAwesomeIcon icon={faSignOutAlt} className="mr-2" />
-              <span>Logout</span>
-            </li>
+              <Link onClick={handleLogout}className="hover:bg-gray-100 hover:text-black px-4 py-2 rounded-full flex items-center">Logout</Link>
+              </li>
           </ul>
         </div>
       </aside>

@@ -2,7 +2,10 @@ import { ErrorMessage, Field, Form, Formik } from "formik";
 import * as Yup from "yup";
 import React, { useEffect, useState } from "react";
 import { Link, Navigate, useNavigate, useParams } from "react-router-dom";
-import {  useGetClassesQuery, useUpdateClassMutation } from "../store/api/ClassSlice";
+import {
+  useGetClassesQuery,
+  useUpdateClassMutation,
+} from "../store/api/ClassSlice";
 
 const EditClass = () => {
   const { data: classes = [] } = useGetClassesQuery();
@@ -13,11 +16,10 @@ const EditClass = () => {
   const params = useParams();
 
   const [initialValues, setInitialValues] = useState({
-    title: '',
-    description: '',
+    title: "",
+    description: "",
   });
- 
-  
+
   useEffect(() => {
     const course = classes.find((course) => course.id === Number(params.id));
     if (course) {
@@ -28,24 +30,21 @@ const EditClass = () => {
     }
   }, [classes, params.id]);
 
- 
   const validationSchema = Yup.object({
     title: Yup.string().required("Title is required"),
     description: Yup.string().required("Description is required"),
   });
 
   const handleSubmit = (values) => {
-  
     updateClass({
       class_id: Number(params.id),
-      updatedClass: values
+      updatedClass: values,
     })
       .unwrap()
       .then(() => {
         navigate("/home");
         // window.location.reload();
       });
-      
   };
 
   return (
@@ -76,7 +75,7 @@ const EditClass = () => {
             </div>
             <div className="mb-5">
               <Field
-               as="textarea"
+                as="textarea"
                 id="description"
                 name="description"
                 placeholder="Description"
@@ -97,6 +96,11 @@ const EditClass = () => {
             </button>
           </Form>
         </Formik>
+        <Link to="/home">
+          <button className="bg-red-400  hover:bg-red-500 text-center text-white px-6 py-3 mt-4 rounded-full cursor-pointer">
+            Back
+          </button>
+        </Link>
       </div>
     </div>
   );

@@ -42,7 +42,7 @@ const SignUp = () => {
             email: values.email,
             password: values.password,
              }).unwrap().then(() => {
-              navigate ("/user/login");
+              navigate ("/");
             });
 
         }else{
@@ -53,7 +53,7 @@ const SignUp = () => {
             email: values.email,
             password: values.password,
              }).unwrap().then(() => {
-              navigate ("/user/login");
+              navigate ("/");
             });
         }   
       };

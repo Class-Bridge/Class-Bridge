@@ -18,18 +18,25 @@ import {
   faHome,
   faPlus
 } from "@fortawesome/free-solid-svg-icons";
-
 import Classes from "./Classes";
 // import { courses } from "./Courses";
 import Pagination from "./Pagination";
 import { Link, useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
+import { useGetStudentQuery, useGetTeacherQuery } from "../store/api/UserSlice";
+
 
 function Home() {
   const [searchTerm, setSearchTerm] = useState("");
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [user, setUser] = useState(null);
+  const [userActive, setUserActive] = useState(false);
+
+  const { data: teacher = {} } = useGetTeacherQuery();
+  const { data: student = {} } = useGetStudentQuery();
+  console.log(student);
+  console.log(teacher);
 
 
   const navigate = useNavigate();
@@ -40,6 +47,12 @@ function Home() {
       setUser(token);
     }
   }, [user]);
+
+  useEffect(() => {
+    if(teacher){
+      setUserActive(true)
+    }
+  }, [userActive]);
 
  
 
@@ -108,19 +121,34 @@ function Home() {
           isSidebarOpen || !isSmallScreen ? "" : "hidden"
         } md:flex`}
       >
+        {userActive ? 
+       
+         <Link to ='/teacher/profile'>
         <div className="bg-gray-100 rounded-3xl p-4 flex items-center m-4 justify-center h-14">
-          <img
-            className="w-12 h-12 rounded-full"
-            src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8dXNlcnxlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80"
-            alt="user"
-          />
+          
           <div className="flex flex-col ml-4">
             <span className="font-bold justify-center text-gray-600">
-              John Doe
+              {teacher.first_name}
             </span>
-            <span className="text-gray-600 text-xs">john.doe@example.com</span>
+            <span className="text-gray-600 text-xs">{teacher.email}</span>
           </div>
         </div>
+        </Link>
+  
+:
+
+        <Link to ='/student/profile'>
+        <div className="bg-gray-100 rounded-3xl p-4 flex items-center m-4 justify-center h-14">
+          
+          <div className="flex flex-col ml-4">
+            <span className="font-bold justify-center text-gray-600">
+              {student.first_name}
+            </span>
+            <span className="text-gray-600 text-xs">{student.email}</span>
+          </div>
+        </div>
+        </Link>
+}
         <nav className="mt-6 mx-4 ">
           <ul className="space-y-4">
             <li>

@@ -32,8 +32,8 @@ const AddClass = () => {
   };
 
   return (
-    <div className="w-full mt-5 p-5 flex flex-row items-center justify-center md:max-w-5xl">
-      <div className="mx-auto rounded-lg bg-white p-10 shadow md:w-1/2 lg:w-1/2">
+    <div className="w-full mr-9 mt-5 p-5 flex flex-row items-center justify-center md:max-w-5xl">
+      <div className=" w-full items-center justify-center rounded-lg bg-white p-10 shadow md:w-1/2 lg:w-1/2">
         <h4 className="mb-10 text-2xl font-bold">Add Class </h4>
         <Formik
           initialValues={initialValues}

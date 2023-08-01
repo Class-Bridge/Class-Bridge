@@ -16,7 +16,9 @@ import {
   faCog,
   faSignOutAlt,
   faHome,
-  faPlus
+  faPlus,
+  faUser,
+  faAddressCard
 } from "@fortawesome/free-solid-svg-icons";
 import Classes from "./Classes";
 // import { courses } from "./Courses";
@@ -106,7 +108,7 @@ function Home() {
   };
 
   return (
-    <div className="flex h-screen overflow-hidden">
+    <div className="flex h-screen ">
       {/* Left Sidebar Overlay */}
       {isSidebarOpen && isSmallScreen && (
         <div
@@ -116,17 +118,18 @@ function Home() {
       )} 
 
       {/* Left Sidebar */}
+
       <aside
-        className={`bg-gray-800 text-white w-64 h-screen flex flex-col ${
+        className={`bg-gray-800 text-white w-64 h-screen flex flex-col md:h-screen  ${
           isSidebarOpen || !isSmallScreen ? "" : "hidden"
         } md:flex`}
       >
         {userActive ? 
        
          <Link to ='/teacher/profile'>
-        <div className="bg-gray-100 rounded-3xl p-4 flex items-center m-4 justify-center h-14">
-          
-          <div className="flex flex-col ml-4">
+        <div className="bg-gray-100 rounded-3xl p-2 flex items-center m-4 justify-center h-14">
+        <span><FontAwesomeIcon icon={faUser} className="h-8 w-10 text-green-600 mr-8"/> </span>
+          <div className="flex flex-col mr-3">
             <span className="font-bold justify-center text-gray-600">
               {teacher.first_name}
             </span>
@@ -139,7 +142,7 @@ function Home() {
 
         <Link to ='/student/profile'>
         <div className="bg-gray-100 rounded-3xl p-4 flex items-center m-4 justify-center h-14">
-          
+        <span><FontAwesomeIcon icon={faUser} className="h-8 w-10 text-green-600 mr-8"/> </span>
           <div className="flex flex-col ml-4">
             <span className="font-bold justify-center text-gray-600">
               {student.first_name}
@@ -155,6 +158,11 @@ function Home() {
           <Link to ='/home'className="hover:bg-gray-100 hover:text-black px-4 py-2 rounded-full"> 
           <FontAwesomeIcon icon={faHome} className="mr-2" />
           Home</Link >
+          </li>
+          <li>
+          <Link to ='/about'className="hover:bg-gray-100 hover:text-black px-4 py-2 rounded-full"> 
+          <FontAwesomeIcon icon={faAddressCard} className="mr-2" />
+          About</Link >
           </li>
             {/* <li className="hover:bg-gray-100 hover:text-black px-4 py-2 rounded-full">
               <FontAwesomeIcon icon={faBookOpen} className="mr-2" />
@@ -188,23 +196,28 @@ function Home() {
         <div className="mt-auto mx-4 mb-6">
           <div className="w-full h-0.5 bg-white"></div>
           <ul className="space-y-4">
-            <li className="hover:bg-gray-100 hover:text-black px-4 py-2 rounded-full flex items-center">
+            <li className="hover:bg-gray-100 hover:text-black px-4 py-2 rounded-full flex items-center cursor-pointer">
               <FontAwesomeIcon icon={faCog} className="mr-2" />
               <span>Settings</span>
             </li>
-            <li>
+            <li className="">
+            <Link onClick={handleLogout}className="hover:bg-gray-100 hover:text-black
+               px-4 py-2 rounded-full flex items-center">
               <FontAwesomeIcon icon={faSignOutAlt} className="mr-2" />
-              <Link onClick={handleLogout}className="hover:bg-gray-100 hover:text-black px-4 py-2 rounded-full flex items-center">Logout</Link>
+              Logout</Link>
               </li>
           </ul>
         </div>
+
       </aside>
 
       {/* Main Content */}
-      <div className="flex-1 flex flex-col">
-        <header className="bg-white shadow-header p-4 flex justify-between">
+      <div className="flex-1 flex flex-col  ">
+        <header className="bg-gray-800 shadow-header  flex items-center py-3" >
+          <div className=" flex md:mx-auto">
+
           <button
-            className="md:hidden text-black-500 focus:outline-none"
+            className="md:hidden text-white focus:outline-none ml-3"
             onClick={handleSidebarToggle}
           >
             {isSidebarOpen ? (
@@ -213,11 +226,13 @@ function Home() {
               <FontAwesomeIcon icon={faBars} className="h-5 w-5" />
             )}
           </button>
-          <h1 className="text-2xl font-bold hidden md:block md:mr-4">
+          <h1 className="text-2xl text-white font-bold hidden md:block md:mr-8 ">
             {isSmallScreen ? "" : "Overview"}
           </h1>
+
           {isSearchOpen || !isSmallScreen ? (
             <div className="relative">
+
               <input
                 type="text"
                 placeholder="Search..."
@@ -230,37 +245,46 @@ function Home() {
               />
               <FontAwesomeIcon
                 icon={faSearch}
-                className="h-3.5 w-3.5 text-black-500 absolute left-3 top-1/2 transform -translate-y-1/2 cursor-pointer"
+                className="h-3.5 w-3.5 text-white absolute left-3 top-1/2 transform -translate-y-1/2 cursor-pointer"
                 onClick={toggleSearchInput}
               />
             </div>
           ) : (
             // Render the icon only on small screens when the search input is closed
             <div
-              className="h-6 w-6 flex items-center justify-center"
+              className="h-6 w-6 flex ml-10 md:mr-2"
               onClick={toggleSearchInput}
             >
-              <FontAwesomeIcon icon={faSearch} className="text-black-500" />
+              <FontAwesomeIcon icon={faSearch} className="text-white mt-1 text-xl" />
             </div>
           )}
-          <div className="flex items-center">
-            <div className="flex items-center ml-8">
+          <div className="flex items-center ml-9 md:mr-0">
+            <div className="flex items-center justify-around">
+              
               <FontAwesomeIcon
                 icon={faEnvelope}
-                className="h-5 w-5 text-black-500 cursor-pointer"
+                className="h-5 w-5 text-white cursor-pointer "
               />
+
+   <Link to ='/pending'>
               <FontAwesomeIcon
                 icon={faBell}
-                className="h-5 w-5 text-black-500 cursor-pointer ml-2"
+                className="h-5 w-5 text-white cursor-pointer ml-9 "
               />
-              <FontAwesomeIcon
+             </Link>
+
+              {/* <FontAwesomeIcon
                 icon={faComment}
                 className="h-5 w-5 text-black-500 cursor-pointer ml-2"
-              />
+              /> */}
+              
+              
+
             </div>
           </div>
+          </div>
         </header>
-        <div className="flex-1 ">
+        <div className=" w-full items-center ">
           <Classes />
         </div>
       </div>

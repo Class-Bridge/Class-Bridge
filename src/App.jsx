@@ -9,6 +9,10 @@ import EditClass from "./component/EditClass";
 import Profile from "./component/user/Tprofile";
 import Tprofile from "./component/user/Tprofile";
 import Sprofile from "./component/user/Sprofile";
+import Description from "./component/Description";
+import Footer from "./component/Footer";
+import About from "./component/About";
+import Pending from "./component/Pending";
 
 
 function App() {
@@ -25,8 +29,8 @@ function App() {
   // if(!user)return<div><Login/> <TsignUp/></div>
 
   return (
-    
-    <>           
+    <>
+    <div className=" space-y-24">         
  <Routes>
               <Route path="/addClass" element={<AddClass />} />
               <Route path="/edit/:id" element={<EditClass />} />
@@ -35,9 +39,16 @@ function App() {
               <Route path="/student/profile" element={<Sprofile />} />
               <Route path="/teacher/login/register" element={<SignUp />} />
               <Route path="/" element={<Login />} />
+              <Route path="/class/:id" element={<Description/>} />
+              <Route path="/about" element={<About/>} />
+              <Route path="/pending" element={<Pending/>} />
             </Routes>
         
-    </>
+  </div> 
+   <div>
+     <Footer />
+   </div>
+   </>
   );
 }
 

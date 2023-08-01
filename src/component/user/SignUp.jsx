@@ -61,16 +61,6 @@ const SignUp = () => {
   };
 
   useEffect(() => {
-    if (error.status === 400) {
-      setRegisterError("User already exists");
-    }
-
-    if (error.status === 500) {
-      setRegisterError("Something went wrong, please try again later");
-    }
-  }, [error]);
-
-  useEffect(() => {
     if (error.status === 409) {
       setRegisterError("User already exists");
     }

@@ -32,27 +32,26 @@ const Header = () => {
 
   return (
     
-    <div className='flex justify-between items-center p-2 bg-gray-200 w-full '>
+  <div className='justify-center md:flex md:justify-around md:items-center md:p-2  md:w-full '>
 
 <Link to ='#' ><div className='ml-[80px] p-2'>
-   <span className='bg-red-500 p-2 rounded-full font-semibold text-white px-3'>0</span></div></Link>
+  <h1 className='font-bold text-2xl'>ClassBridge</h1>
+   </div></Link>
 
 
-    <div className='mr-20'>
-      
-{user &&
+    <div className ='ml-14 md:mr-20-'>
 <>
-     
-     <Link to ='addClass'  className='p-2 text-yellow-700 font-semibold'> Add Class</Link>
-     <Link to ='user/profile' className='p-2 text-yellow-700 font-semibold '> Profile</Link >
-     {/* //<Link onClick={handleLogout}className='p-2 text-yellow-700 font-semibold'>Logout</Link> */}
+     <Link to ='/home'  className='p-2 text-black font-semibold'>Home</Link>
+     <Link to ='/about' className='p-2 text-black font-semibold '>About</Link >
+  
      {/* <Link to ='/'  className='p-2 text-yellow-700 font-semibold'>Login </Link> */}
      
-     <Link onClick={handleLogout}className='p-2 text-yellow-700 font-semibold'>Logout</Link>
+     <Link onClick={handleLogout}className='p-2 text-black font-semibold'>Logout</Link>
      </>
-}
+
       </div>
-    </div>
+      </div>
+   
   )
 }
 

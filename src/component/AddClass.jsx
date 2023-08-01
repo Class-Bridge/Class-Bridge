@@ -32,9 +32,15 @@ const AddClass = () => {
   };
 
   return (
+<<<<<<< HEAD
     <div className="w-full mr-9 mt-5 p-5 flex flex-row items-center justify-center md:max-w-5xl">
       <div className=" w-full items-center justify-center rounded-lg bg-white p-10 shadow md:w-1/2 lg:w-1/2">
         <h4 className="mb-10 text-2xl font-bold">Add Class </h4>
+=======
+    <div className="w-full mt-5 p-5 flex flex-row items-center justify-center md:max-w-5xl">
+      <div className="mx-auto rounded-lg bg-white p-10 shadow md:w-1/2 lg:w-1/2">
+        <h4 className="mb-10 text-2xl font-bold text-center">Add Class </h4>
+>>>>>>> origin/master
         <Formik
           initialValues={initialValues}
           validationSchema={validationSchema}
@@ -78,6 +84,11 @@ const AddClass = () => {
             </button>
           </Form>
         </Formik>
+        <Link to="/home">
+          <button className="bg-red-400  hover:bg-red-500 text-center text-white px-6 py-3 mt-4 rounded-full cursor-pointer">
+            Back
+          </button>
+        </Link>
       </div>
     </div>
   );

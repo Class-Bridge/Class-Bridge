@@ -17,11 +17,8 @@ import {
   faSignOutAlt,
   faHome,
   faPlus,
-<<<<<<< HEAD
   faUser,
   faAddressCard
-=======
->>>>>>> origin/master
 } from "@fortawesome/free-solid-svg-icons";
 import Classes from "./Classes";
 // import { courses } from "./Courses";
@@ -52,7 +49,6 @@ function Home() {
     }
   }, [user]);
 
-<<<<<<< HEAD
   useEffect(() => {
     if(teacher){
       setUserActive(true)
@@ -62,8 +58,6 @@ function Home() {
  
 
 
-=======
->>>>>>> origin/master
   const handleLogout = () => {
     try {
       Cookies.remove("token");
@@ -159,7 +153,6 @@ function Home() {
         <nav className="mt-6 mx-4 ">
           <ul className="space-y-4">
             <li>
-<<<<<<< HEAD
           <Link to ='/home'className="hover:bg-gray-100 hover:text-black px-4 py-2 rounded-full"> 
           <FontAwesomeIcon icon={faHome} className="mr-2" />
           Home</Link >
@@ -169,16 +162,6 @@ function Home() {
           <FontAwesomeIcon icon={faAddressCard} className="mr-2" />
           About</Link >
           </li>
-=======
-              <Link
-                to="/home"
-                className="hover:bg-gray-100 hover:text-black px-4 py-2 rounded-full"
-              >
-                <FontAwesomeIcon icon={faHome} className="mr-2" />
-                Home
-              </Link>
-            </li>
->>>>>>> origin/master
             {/* <li className="hover:bg-gray-100 hover:text-black px-4 py-2 rounded-full">
               <FontAwesomeIcon icon={faBookOpen} className="mr-2" />
               Class Overview
@@ -215,7 +198,6 @@ function Home() {
         <div className="mt-auto mx-4 mb-6">
           <div className="w-full h-0.5 bg-white"></div>
           <ul className="space-y-4">
-<<<<<<< HEAD
             <li className="hover:bg-gray-100 hover:text-black px-4 py-2 rounded-full flex items-center cursor-pointer">
               <FontAwesomeIcon icon={faCog} className="mr-2" />
               <span>Settings</span>
@@ -226,21 +208,6 @@ function Home() {
               <FontAwesomeIcon icon={faSignOutAlt} className="mr-2" />
               Logout</Link>
               </li>
-=======
-            <li className="hover:bg-gray-100 hover:text-black px-3 py-3 rounded-full flex items-center">
-              <FontAwesomeIcon icon={faCog} className="mr-2" />
-              <span>Settings</span>
-            </li>
-            <li>
-              <Link
-                onClick={handleLogout}
-                className="hover:bg-gray-100 hover:text-black px-3 py-2 rounded-full flex items-center"
-              >
-                <FontAwesomeIcon icon={faSignOutAlt} className="mr-2" />
-                <span>Logout</span>
-              </Link>
-            </li>
->>>>>>> origin/master
           </ul>
         </div>
 

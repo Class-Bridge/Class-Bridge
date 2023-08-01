@@ -8,11 +8,8 @@ import {
 } from "../../store/api/AuthSlice";
 
 const Login = () => {
-<<<<<<< HEAD
   
 
-=======
->>>>>>> origin/master
   const navigate = useNavigate();
   const [tlogin, { error = {}, success }] = useTloginMutation();
   const [slogin, { err = {} }] = useSloginMutation();

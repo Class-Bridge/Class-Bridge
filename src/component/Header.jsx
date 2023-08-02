@@ -46,7 +46,7 @@ const Header = () => {
   
      {/* <Link to ='/'  className='p-2 text-yellow-700 font-semibold'>Login </Link> */}
      
-     <Link onClick={handleLogout}className='p-2 text-black font-semibold'>Logout</Link>
+     <Link to='/Login' onClick={handleLogout}className='p-2 text-black font-semibold'>Logout</Link>
      </>
 
       </div>

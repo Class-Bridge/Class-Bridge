@@ -24,26 +24,26 @@ export const authSlice = createApi({
 
     tsignUp: builder.mutation({
         query: (newTeacher) => ({
-          url: "teacher/signup",
+          url: "/teacher/signup",
           method:"POST",
           body: newTeacher,
         }),
-        invalidatesTags: ["teacher"],
+        invalidatesTags: ["User"],
       }),
       // Student Registration
       ssignUp: builder.mutation({
         query: (newStudent) => ({
-          url: "student/signup",
+          url: "/student/signup",
           method:"POST",
           body: newStudent,
         }),
-        invalidatesTags: ["student"],
+        invalidatesTags: ["User"],
       }),
 
        //Teacher login
     tlogin: builder.mutation({
         query: (user) => ({
-          url: "teacher/login",
+          url: "/teacher/login",
           method: "POST",
           body: user,
         }),
@@ -66,7 +66,7 @@ export const authSlice = createApi({
           body: student,
         }),
 
-        invalidatesTags: ["student"],
+        invalidatesTags: ["User"],
 
          // on success we want to set the token cookie
          onQueryStarted: async (arg, { queryFulfilled }) => {

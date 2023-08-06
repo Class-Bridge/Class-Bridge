@@ -176,6 +176,7 @@ function Courses() {
               progress={course.progress}
               key={course.id}
               courseId={course.id}
+              image={course.image}
             />
           </div>
         ))}

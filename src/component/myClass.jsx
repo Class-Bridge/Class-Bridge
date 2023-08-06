@@ -1,29 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faPlayCircle,
   faTrash,
   faEdit
 } from "@fortawesome/free-solid-svg-icons";
-import {  useDeleteClassMutation, useGetClassesQuery }  from "../store/api/ClassSlice";
+import {  useDeleteClassMutation }  from "../store/api/ClassSlice";
 import { Link, Navigate, useNavigate } from "react-router-dom";
-import Cookies from "js-cookie";
 
 
 
-function CourseCard({ image, title, description, courseId}) {
-
-  const { data: classes = [] } = useGetClassesQuery();
-  const [user, setUser] = useState(null);
- 
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    const token = Cookies.get("token");
-    if (token) {
-      setUser(token);
-    }
-  }, [user]);
+function CourseCard({ imageSrc, title, description, courseId}) {
 
   const [deleteClass] = useDeleteClassMutation();
  
@@ -33,10 +20,7 @@ function CourseCard({ image, title, description, courseId}) {
   console.log(courseId);
 
   deleteClass(class_id);
-  } 
-
-
-  // classes.map()
+  }
   
    
 
@@ -48,7 +32,8 @@ function CourseCard({ image, title, description, courseId}) {
 <div className="items-center justify-center ml-10 md:ml-1">
       <img
         className="w-56 h-32  rounded-lg mb-4"
-        src={image}
+        src='https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8ZWxlYXJuaW5nJTIwYm9va3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60'
+        alt={title}
       />
       <Link to={`/class/${courseId}`}>
       <h1 className="text-black font-bold mb-2">{title}</h1>
@@ -58,7 +43,6 @@ function CourseCard({ image, title, description, courseId}) {
       <div className="flex items-center mt-4">
         
         <div className="flex-1 ml-4">
-        {/* {user && teacher_id === clas.user_id && */}
           <div className="flex items-center justify-around">
             <button
               className="flex items-center text-gray-800 mr-4"
@@ -78,7 +62,6 @@ function CourseCard({ image, title, description, courseId}) {
             </button>
             </Link>
           </div>
-{/* } */}
         </div>
       </div>
       </>

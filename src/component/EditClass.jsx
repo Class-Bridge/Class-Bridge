@@ -17,6 +17,7 @@ const EditClass = () => {
 
   const [initialValues, setInitialValues] = useState({
     title: "",
+    image: "",
     description: "",
   });
 
@@ -25,30 +26,33 @@ const EditClass = () => {
     if (course) {
       setInitialValues({
         title: course.title,
-        description: course.description,
+        image: course.image,
+        description: course.description
       });
-    }
+    } 
   }, [classes, params.id]);
 
   const validationSchema = Yup.object({
     title: Yup.string().required("Title is required"),
+    image: Yup.string().required("Image is required"),
     description: Yup.string().required("Description is required"),
   });
 
   const handleSubmit = (values) => {
+    console.log(values);
     updateClass({
       class_id: Number(params.id),
-      updatedClass: values,
+      updatedClass: values
     })
-      .unwrap()
-      .then(() => {
-        navigate("/home");
-        // window.location.reload();
-      });
+      // .unwrap()
+      // .then(() => {
+      //   navigate("/teacher/dashpord");
+      //   // window.location.reload();
+      // });
   };
-
   return (
-    <div className="w-full flex flex-row items-center justify-center">
+    <>
+    <div className="w-full flex flex-row items-center justify-center space-y-10">
       <div className="mx-auto rounded-lg bg-white p-10 shadow md:w-1/2 lg:w-1/2">
         <h4 className="mb-10 text-2xl font-bold">Edit Class </h4>
         <Formik
@@ -65,6 +69,20 @@ const EditClass = () => {
                 id="title"
                 name="title"
                 placeholder="Title"
+                className="w-full rounded-3xl border border-gray-300 p-3 shadow"
+              />
+              <ErrorMessage
+                name="title"
+                component="div"
+                className="text-red-500"
+              />
+            </div>
+            <div className="mb-5">
+              <Field
+                type="text"
+                id="image"
+                name="image"
+                placeholder="Url"
                 className="w-full rounded-3xl border border-gray-300 p-3 shadow"
               />
               <ErrorMessage
@@ -96,13 +114,12 @@ const EditClass = () => {
             </button>
           </Form>
         </Formik>
-        <Link to="/home">
-          <button className="bg-red-400  hover:bg-red-500 text-center text-white px-6 py-3 mt-4 rounded-full cursor-pointer">
-            Back
-          </button>
-        </Link>
+        
       </div>
     </div>
+    
+    <div className=" mt-20"></div>
+    </>
   );
 };
 

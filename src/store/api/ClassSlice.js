@@ -37,6 +37,7 @@ export const ClassApi = createApi({
       }),
       invalidatesTags: ["Classes"],
     }),
+
     updateClass: builder.mutation({
       query: ({ class_id, updatedClass }) => ({
         url: `classes/${class_id}`,
@@ -45,6 +46,7 @@ export const ClassApi = createApi({
     }),
       invalidatesTags: ["Classes"],
     }),
+
     deleteClass: builder.mutation({
       query: ( class_id ) => ({
         url: `classes/${class_id}`,
@@ -52,8 +54,32 @@ export const ClassApi = createApi({
     }),
       invalidatesTags: ["Classes"],
     }),
+
+    getStudentRequest: builder.query({
+      query: () => ({
+        url: "teacher/class-requests",
+        method: "GET",
+      }),
+      providesTags: ["Classes"],
+
+    }),
+    requestClass: builder.mutation({
+      query: (class_id, requestedClass) => ({
+        url: `classes/${class_id}/request`,
+        method: "POST",
+        body: requestedClass
+      }),
+      invalidatesTags: ["Classes"],
+    }),
     
   }),
 });
 
-export const { useGetClassesQuery, useAddClassMutation, useUpdateClassMutation, useDeleteClassMutation}=ClassApi;
+export const {
+   useGetClassesQuery,
+   useGetStudentRequestQuery,
+   useAddClassMutation,
+   useUpdateClassMutation,
+   useDeleteClassMutation,
+   useRequestClassMutation
+  }=ClassApi;

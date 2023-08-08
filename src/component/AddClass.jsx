@@ -12,25 +12,26 @@ const AddClass = () => {
   const initialValues = {
     title: "",
     description: "",
+    image:  ""
   };
   const validationSchema = Yup.object({
-    title: Yup.string().required("First Name is required"),
-    description: Yup.string().required("Last Name is required"),
+    title: Yup.string().required("Title is required"),
+    description: Yup.string().required("Description is required"),
+    image: Yup.string().required("Image is required"),
   });
 
   const handleSubmit = (values) => {
-    console.log("values", values);
     addClass({
       title: values.title,
       description: values.description,
+      image: values.image,
     })
       .unwrap()
       .then(() => {
-        navigate("/home");
+        navigate("/teacher/dashpord");
         window.location.reload();
       });
   };
-
   return (
     <div className="w-full mr-9 mt-5 p-5 flex flex-row items-center justify-center md:max-w-5xl">
       <div className=" w-full items-center justify-center rounded-lg bg-white p-10 shadow md:w-1/2 lg:w-1/2">
@@ -58,6 +59,20 @@ const AddClass = () => {
             </div>
             <div className="mb-5">
               <Field
+                type="text"
+                id="image"
+                name="image"
+                placeholder="Image"
+                className="w-full rounded-3xl border border-gray-300 p-3 shadow"
+              />
+              <ErrorMessage
+                name="image"
+                component="div"
+                className="text-red-500"
+              />
+            </div>
+            <div className="mb-5">
+              <Field
                 as="textarea"
                 id="description"
                 name="description"
@@ -78,11 +93,6 @@ const AddClass = () => {
             </button>
           </Form>
         </Formik>
-        <Link to="/home">
-          <button className="bg-red-400  hover:bg-red-500 text-center text-white px-6 py-3 mt-4 rounded-full cursor-pointer">
-            Back
-          </button>
-        </Link>
       </div>
     </div>
   );

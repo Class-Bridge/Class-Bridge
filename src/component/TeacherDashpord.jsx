@@ -27,21 +27,30 @@ import Pagination from "./Pagination";
 import { Link, useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import { useGetStudentQuery, useGetTeacherQuery } from "../store/api/UserSlice";
+import { useGetStudentRequestQuery } from "../store/api/ClassSlice";
 
 
-function Home() {
+function TeacherDashpord() {
   const [searchTerm, setSearchTerm] = useState("");
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
 
- 
 
-  
-
- 
 
   const [user, setUser] = useState(null);
+  
+
+  
+  const { data: teacher = {} } = useGetTeacherQuery();
  
+
+console.log("teacher", teacher)
+
+  const { data: requests = [] } = useGetStudentRequestQuery();
+
+  
+  const [userError, setUserError] = useState(null);
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -50,6 +59,11 @@ function Home() {
       setUser(token);
     }
   }, [user]);
+
+ 
+
+  
+  
 
   const handleLogout = () => {
     try {
@@ -117,18 +131,22 @@ function Home() {
       >
     
        
-         
-        <div className="bg-gray-100 opacity-50 rounded-3xl flex items-center m-4 justify-center h-14">
+         <Link to ='/teacher/profile'>
+        <div className="bg-gray-100 rounded-3xl p-2 flex items-center m-4 justify-center h-14">
+        <span><FontAwesomeIcon icon={faUser} className="h-8 w-10 text-green-600 mr-8"/> </span>
           <div className="flex flex-col mr-3">
-            <h1 className="text-black text-2xl font-bold cursor-pointer hover:text-blue-500">ClassBridge</h1>
+            <span className="font-bold justify-center text-gray-600">
+              {teacher.first_name}
+            </span>
+            <span className="text-gray-600 text-xs">{teacher.email}</span>
           </div>
         </div>
-        
-        
-        <nav className="mt-14 mx-4 ">
+        </Link>
+
+        <nav className="mt-6 mx-4 ">
           <ul className="space-y-4">
             <li>
-          <Link to ='/'className="hover:bg-gray-100 hover:text-black px-4 py-2 rounded-full"> 
+          <Link to ='/teacher/dashpord'className="hover:bg-gray-100 hover:text-black px-4 py-2 rounded-full"> 
           <FontAwesomeIcon icon={faHome} className="mr-2" />
           Home</Link >
           </li>
@@ -137,7 +155,6 @@ function Home() {
           <FontAwesomeIcon icon={faAddressCard} className="mr-2" />
           About</Link >
           </li>
-
           <li>
           <Link to ='/contact'className="hover:bg-gray-100 hover:text-black px-4 py-2 rounded-full"> 
           <FontAwesomeIcon icon={faEnvelope} className="mr-2" />
@@ -150,13 +167,25 @@ function Home() {
               Upcoming Classes
               </Link>
             </li>
+            
 
             {/* <li className="hover:bg-gray-100 px-4 hover:text-black py-2 rounded-full">
               <FontAwesomeIcon icon={faCheck} className="mr-2" />
               Grades
             </li> */}
         
-            
+            <li>
+           
+              <Link
+                to="/addClass"
+                className="hover:bg-gray-100 hover:text-black px-4 py-2 rounded-full"
+              >
+                <FontAwesomeIcon icon={faPlus} className="mr-2" />
+                Add Class
+              </Link>
+
+            </li>
+
 
             {/* <li className="hover:bg-gray-100 hover:text-black px-4 py-2 rounded-full">
               <FontAwesomeIcon icon={faUserGroup} className="mr-2" />
@@ -172,7 +201,7 @@ function Home() {
               <FontAwesomeIcon icon={faCog} className="mr-2" />
               <span>Settings</span>
             </li>
-           
+            
             <li className="">
             <Link onClick={handleLogout}className="hover:bg-gray-100 hover:text-black
                px-4 py-2 rounded-full flex items-center">
@@ -231,27 +260,26 @@ function Home() {
               <FontAwesomeIcon icon={faSearch} className="text-white mt-1 text-xl" />
             </div>
           )}
-
           <div className="flex items-center ml-9 md:mr-0">
             <div className="flex items-center justify-around">
               
-              
-            <Link to ='/login' className=" ml-36 text-white hover:text-blue-300
-               px-4 py-2 rounded-full flex items-center">
-              <FontAwesomeIcon icon={faSignInAlt} className="mr-2" />
-              Login</Link>
-  
+            
 
-             
-              
-
+   <Link to ='/pending'>
+              <FontAwesomeIcon
+                icon={faBell}
+                className=" relative h-7 w-7 text-white cursor-pointer ml-9 hover:text-yellow-200"
+              />
+             </Link>
+            {     requests.length !== 0 &&
+             <span className=" absolute w-4 h-4 cursor-pointer ml-9 mt-3 text-white bg-red-500 rounded-full pl-1 text-xs  font-semibold">{requests.length}</span>
+            }
             </div>
           </div>
-          
           </div>
         </header>
         <div className=" w-full items-center ">
-          <Classes />
+          <Classes teacher={teacher} />
         </div>
       </div>
       {/* Right Sidebar (Large Screen) */}
@@ -289,4 +317,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default TeacherDashpord;

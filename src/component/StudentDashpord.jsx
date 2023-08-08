@@ -29,19 +29,17 @@ import Cookies from "js-cookie";
 import { useGetStudentQuery, useGetTeacherQuery } from "../store/api/UserSlice";
 
 
-function Home() {
+function StudentDashpord() {
   const [searchTerm, setSearchTerm] = useState("");
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
 
- 
 
-  
-
- 
 
   const [user, setUser] = useState(null);
- 
+
+  const { data: student = {} } = useGetStudentQuery();
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -115,20 +113,22 @@ function Home() {
           isSidebarOpen || !isSmallScreen ? "" : "hidden"
         } md:flex`}
       >
-    
-       
-         
-        <div className="bg-gray-100 opacity-50 rounded-3xl flex items-center m-4 justify-center h-14">
-          <div className="flex flex-col mr-3">
-            <h1 className="text-black text-2xl font-bold cursor-pointer hover:text-blue-500">ClassBridge</h1>
-          </div>
-        </div>
-        
-        
-        <nav className="mt-14 mx-4 ">
+
+          <Link to ='/student/profile'>
+         <div className="bg-gray-100 rounded-3xl p-4 flex items-center m-4 justify-center h-14">
+        <span><FontAwesomeIcon icon={faUser} className="h-8 w-10 text-green-600 mr-8"/> </span>
+           <div className="flex flex-col ml-4">
+             <span className="font-bold justify-center text-gray-600">
+              {student.first_name}
+             </span>
+           <span className="text-gray-600 text-xs">{student.email}</span>
+           </div>
+         </div>
+         </Link> 
+        <nav className="mt-6 mx-4 ">
           <ul className="space-y-4">
             <li>
-          <Link to ='/'className="hover:bg-gray-100 hover:text-black px-4 py-2 rounded-full"> 
+          <Link to ='/student/dashpord'className="hover:bg-gray-100 hover:text-black px-4 py-2 rounded-full"> 
           <FontAwesomeIcon icon={faHome} className="mr-2" />
           Home</Link >
           </li>
@@ -137,7 +137,6 @@ function Home() {
           <FontAwesomeIcon icon={faAddressCard} className="mr-2" />
           About</Link >
           </li>
-
           <li>
           <Link to ='/contact'className="hover:bg-gray-100 hover:text-black px-4 py-2 rounded-full"> 
           <FontAwesomeIcon icon={faEnvelope} className="mr-2" />
@@ -151,18 +150,25 @@ function Home() {
               </Link>
             </li>
 
+
+
             {/* <li className="hover:bg-gray-100 px-4 hover:text-black py-2 rounded-full">
               <FontAwesomeIcon icon={faCheck} className="mr-2" />
               Grades
             </li> */}
-        
             
-
             {/* <li className="hover:bg-gray-100 hover:text-black px-4 py-2 rounded-full">
               <FontAwesomeIcon icon={faUserGroup} className="mr-2" />
               Teachers
             </li> */}
-           
+            <li
+             className="hover:bg-gray-100 hover:text-black px-4 py-2 rounded-full">
+               <Link to ='/student/classes'>
+              <FontAwesomeIcon icon={faNoteSticky} className="mr-2" />
+              My Classes
+              </Link>
+            
+            </li>
           </ul>
         </nav>
         <div className="mt-auto mx-4 mb-14">
@@ -204,7 +210,7 @@ function Home() {
           </h1>
 
           {isSearchOpen || !isSmallScreen ? (
-            <div className="relative">
+            <div className="relative ml-20">
 
               <input
                 type="text"
@@ -231,23 +237,14 @@ function Home() {
               <FontAwesomeIcon icon={faSearch} className="text-white mt-1 text-xl" />
             </div>
           )}
-
           <div className="flex items-center ml-9 md:mr-0">
             <div className="flex items-center justify-around">
               
               
-            <Link to ='/login' className=" ml-36 text-white hover:text-blue-300
-               px-4 py-2 rounded-full flex items-center">
-              <FontAwesomeIcon icon={faSignInAlt} className="mr-2" />
-              Login</Link>
-  
-
-             
-              
+            
 
             </div>
           </div>
-          
           </div>
         </header>
         <div className=" w-full items-center ">
@@ -289,4 +286,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default StudentDashpord;

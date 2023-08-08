@@ -8,17 +8,23 @@ import {
 import {  useDeleteClassMutation, useGetClassesQuery }  from "../store/api/ClassSlice";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
-
-
+import { useGetTeacherQuery } from "../store/api/UserSlice";
 
 function CourseCard({ image, title, description, courseId}) {
 
   const { data: classes = [] } = useGetClassesQuery();
+  const { data: teacher = {}, error = {} } = useGetTeacherQuery();
+
+
+
   const [user, setUser] = useState(null);
- 
+
+  const [access, setAccess] = useState()
   const navigate = useNavigate();
+ 
 
   useEffect(() => {
+
     const token = Cookies.get("token");
     if (token) {
       setUser(token);
@@ -35,15 +41,23 @@ function CourseCard({ image, title, description, courseId}) {
   deleteClass(class_id);
   } 
 
+  useEffect(() => {
+  classes?.map((course) => {
 
-  // classes.map()
+    if(teacher.id  === course.teacher_id){
+      setAccess()
+  }
+  })
+  }, [classes]);
+
   
+ 
    
 
  
   return (
     <div className="bg-white rounded-lg shadow-md p-3 ">
-      {/* {classes.map((course) =>  ( */}
+      
 <>
 <div className="items-center justify-center ml-10 md:ml-1">
       <img
@@ -58,7 +72,8 @@ function CourseCard({ image, title, description, courseId}) {
       <div className="flex items-center mt-4">
         
         <div className="flex-1 ml-4">
-        {/* {user && teacher_id === clas.user_id && */}
+
+{user &&
           <div className="flex items-center justify-around">
             <button
               className="flex items-center text-gray-800 mr-4"
@@ -77,12 +92,12 @@ function CourseCard({ image, title, description, courseId}) {
           
             </button>
             </Link>
-          </div>
-{/* } */}
+          </div>        
+}
+
         </div>
       </div>
       </>
-      {/* // ))} */}
     </div>
   );
 }

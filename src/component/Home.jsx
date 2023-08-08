@@ -34,29 +34,11 @@ function Home() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
 
-  const [teacherRole, setTeacherRole] = useState(false);
-  const [studentRole, setSudentRole] = useState(false);
-
-  const { data: teacher = {}, error = {} } = useGetTeacherQuery();
-  const { data: student = {}, err = {} } = useGetStudentQuery();
-
-  console.log(teacherRole);
-  console.log(studentRole);
-
-  useEffect(() => {
-    if (!error === 401) {
-      setTeacherRole(true);
-    }
-     
-  }, [error]);
-
-  useEffect(() => {
-    if (!err === 401) {
-      setSudentRole(true);
-    }
  
-  }, [err]);
 
+  
+
+ 
 
   const [user, setUser] = useState(null);
  

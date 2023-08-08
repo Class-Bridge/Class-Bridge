@@ -28,7 +28,7 @@ const AddClass = () => {
     })
       .unwrap()
       .then(() => {
-        navigate("/");
+        navigate("/teacher/dashpord");
         window.location.reload();
       });
   };

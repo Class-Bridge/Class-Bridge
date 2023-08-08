@@ -19,6 +19,7 @@ import TeacherDashpord from "./component/TeacherDashpord";
 import PrivateRoute from "./PrivateRouter";
 import MyClasses from "./component/MyClasses";
 import Contact from "./component/Contact";
+import Approve from "./component/Approve";
 
 
 function App() {
@@ -48,6 +49,7 @@ function App() {
               <Route path="/teacher/profile" element={<Tprofile />} />
               <Route path="/student/profile" element={<Sprofile />} />
               <Route path="/student/classes" element={<MyClasses />} />
+              <Route path="/teacher/approve/:id" element={<Approve />} />
 </Route>
 
               <Route path="/" element={<Home />} />

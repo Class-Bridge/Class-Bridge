@@ -1,7 +1,20 @@
 import React from 'react'
 import Header from './Header'
+import { useGetStudentClassesQuery } from '../store/api/ClassSlice'
+import MyClass from './myClass'
+
+
+
 
 const MyClasses = () => {
+
+
+  
+  const { data: myClasses = [] } = useGetStudentClassesQuery()
+  
+  console.log(myClasses);
+
+
   return (
     <div className="bg-white  p-4  max-w-5xl mx-auto">
       <Header/>
@@ -15,22 +28,20 @@ const MyClasses = () => {
       />
       </div>
       </div>
-      {/* <div className="p-4 flex-1 overflow-y-auto justify-center items-center">
+      <div className="p-4 flex-1 overflow-y-auto justify-center items-center">
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 ">
-        {classes?.map((course) => (
-          <div key={course.id} className=" p-2 items-center justify-center">
-            <CourseCard
-              imageSrc={course.imageSrc}
-              title={course.title}
-              description={course.description}
-              progress={course.progress}
-              key={course.id}
-              courseId={course.id}
+        {myClasses?.map((myClass) => (
+          <div key={myClass.id} className=" p-2 items-center justify-center">
+            <MyClass
+              image={myClass.image}
+              title={myClass.title}
+              description={myClass.description}
+              key={myClass.id}
             />
           </div>
         ))}
       </div>
-    </div> */}
+    </div>
       </div>
       
 

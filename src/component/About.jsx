@@ -1,8 +1,11 @@
 import React from 'react'
 import Header from './Header'
+import {FaUserTie} from "react-icons/fa";
 
 const About = () => {
+
   return (
+
     <div className="bg-white  p-4  max-w-5xl mx-auto">
       <Header/>
       <div className="  rounded-xl mx-auto mt-8 opacity-60 space-y-4 bg-green-500 py-4 w-full">
@@ -15,36 +18,131 @@ const About = () => {
       />
       </div>
       </div>
+      <div className='md: grid md:grid-cols-2 md:space-x-6'>
+      <div className=" max-w-xl bg-white grounded-md shadow-md mx-auto mt-20 rounded-md
+       items-center justify-center space-y-6 ">
+        <div className=" py-2 space-y-10 text-center ">
+        
+        <h1 className="text-xl font-bold  p-2 rounded-lg">Why This Project</h1>
+   
+      <p className="text-black text-left px-2 text-lg">
+      This project was made by a team of students who graduated from frontend web development at Gabi School.
+       This project was a test of what we have learned. This project is built with react and tailwindcss.
+      </p>               
+     </div>
+
+      </div>
       <div className=" max-w-xl bg-white grounded-md shadow-md mx-auto mt-20 rounded-md
        items-center justify-center space-y-6">
         <div className=" py-2 space-y-10 text-center ">
         
-        <h1 className="text-xl font-bold bg-green-500 p-2 rounded-lg">Interoduction</h1>
+        <h1 className="text-xl font-bold  p-2 rounded-lg">How this Project Works</h1>
    
       <p className="text-black text-left px-2 text-lg">
-      When we started ClassBridge to give Students from all across the world the ability to learn the skills they’d need to succeed in this modern century. We set out to create a new, interactive way of learning — making it engaging, flexible, and accessible for as many people as possible. Since then, we have helped hundreds of Somali people worldwide unlock modern technical skills and reach their full potential through code. There are two commitments we've made to the world. We've been grounded by these since day one: Increase access to high-quality
-       education for everyone, everywhere; Enhance teaching and learning online through research.
+         This project works as an online school, where both teachers and students can register.
+         The teacher has the ability to create a new class and modify it as well as delete it.
+         A student has the ability to join any class he wants to be a part of that class.
       </p>
                 
      </div>
 
       </div>
-      <div className=" max-w-lg bg-white grounded-md shadow-md mx-auto mt-10 rounded-md
+
+      <div className=" max-w-xl bg-white grounded-md shadow-md mx-auto mt-20 rounded-md
        items-center justify-center space-y-6">
         <div className=" py-2 space-y-10 text-center ">
         
-        <h1 className="text-xl font-bold bg-green-500 p-2 rounded-lg">Our Goal</h1>
+      <h1 className="text-xl font-bold p-2 rounded-lg">Thanks Giving</h1>
    
       <p className="text-black text-left px-2 text-lg">
-      We want to create a world where anyone can build something meaningful with technology, and everyone has the 
-      learning tools, resources, and opportunities to do so. Code contains a world of possibilities — all that’s required is the curiosity 
-      and drive to learn. At ClassBridge, we are dedicated to empowering all people, regardless of where
-       they are in their coding journeys, to continue to learn, grow, and make an impact on the world around them.
+      First of all, thanks to Allah, then we thank Gabi School and our teacher Duran Ali, 
+      who was really the reason for us to come here and build this very beautiful project.
       </p>
+      <img
+        className="opacity-30 w-[450px] h-full  object-cover rounded-lg mb-4 md:ml-2"
+        src='/src/assets/ud.PNG'
+        alt=""
+      />
                 
      </div>
 
       </div>
+
+      <div className=" max-w-lg bg-white grounded-md shadow-md mx-auto mt-10 rounded-md
+       items-center justify-center space-y-6 pb-4">
+
+        <div className=" py-2 space-y-10 text-center p-2 ">
+        
+        <h1 className="text-xl font-bold  p-2 rounded-lg">Our Team</h1>
+   
+      <p className="text-black text-left px-2 text-lg">
+      This project was built together by all the students pictured below.
+      </p>
+      <div className='grid grid-cols-3 space-y-5'>
+
+        <div className='flex flex-col items-center justify-center space-y-4 mt-6'> 
+        <img
+        className=" w-20 h-full  object-cover rounded-lg mb-4"
+        src='/src/assets/ibr.JPEG'
+        alt=""
+      />
+              
+          <p className='font-bold'>Ibrahim Husseim</p>
+
+        </div>
+        <div className='flex flex-col items-center justify-center space-y-4'> 
+        <img
+        className=" w-20 h-full  object-cover rounded-lg mb-4"
+        src='/src/assets/moh.JPEG'
+        alt=""
+      />
+          <p className='font-bold'>Mohamed Abdullahi</p>
+
+        </div>
+        <div className='flex flex-col items-center justify-center space-y-9 md:space-y-2'> 
+        <img
+        className=" w-20 h-full  object-cover rounded-lg mb-4"
+        src='/src/assets/shak.JPEG'
+        alt=""
+      />
+          <p className='font-bold'>Abdishakur</p>
+
+        </div>
+        <div className='flex flex-col items-center justify-center space-y-4'> 
+        <img
+        className=" w-20 h-full  object-cover rounded-lg mb-4"
+        src='/src/assets/ibr.JPEG'
+        alt=""
+      />
+          <p className='font-bold'>Ali Omar</p>
+
+        </div>
+        <div className='flex flex-col items-center justify-center space-y-4'> 
+        <img
+        className=" w-20 h-full  object-cover rounded-lg mb-4"
+        src='/src/assets/ibr.JPEG'
+        alt=""
+      />
+          <p className='font-bold'>Hassan</p>
+
+        </div>
+        <div className='flex flex-col items-center justify-center space-y-4'> 
+        <img
+        className=" w-20 h-full  object-cover rounded-lg mb-4"
+        src='/src/assets/ibr.JPEG'
+        alt=""
+      />
+          <p className='font-bold'>AbdiKani</p>
+
+        </div>
+        
+      </div>
+                
+     </div>
+
+      </div>
+      </div>
+      
       </div>
       
 

@@ -15,14 +15,12 @@ function Description () {
     const params = useParams();
  const [requestClass] = useRequestClassMutation();
   const { data: classes = [] } = useGetClassesQuery();
-  const [course, setCourse] = useState()
-  console.log(course);
+   const [course, setCourse] = useState()
    const [title, setTitle] = useState()
    const [des, setDes] = useState()
    const [img, setImg] = useState()
-  
-   console.log(title);
-   console.log(des);
+
+   const navigate = useNavigate();
     
     useEffect(() => {
       const course = classes?.find((course) => course.id === Number(params.id));
@@ -30,6 +28,7 @@ function Description () {
         setTitle(course.title);
         setDes(course.description)
         setImg(course.image)
+
         setCourse(course)
     
     }, [classes, params.id]);
@@ -38,6 +37,11 @@ function Description () {
    requestClass({class_id: Number(params.id),
     requestedClass: course
   })
+  .unwrap()
+      .then(() => {
+        navigate("/student/dashpord");
+      }
+    )
     }
 
   return (
@@ -51,6 +55,7 @@ function Description () {
         src={img}
         alt=""
       />
+      
       </div>
       </div>
       <div className=" max-w-lg bg-white grounded-md shadow-md mx-auto mt-10 rounded-md

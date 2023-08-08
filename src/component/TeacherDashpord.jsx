@@ -27,6 +27,7 @@ import Pagination from "./Pagination";
 import { Link, useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import { useGetStudentQuery, useGetTeacherQuery } from "../store/api/UserSlice";
+import { useGetStudentRequestQuery } from "../store/api/ClassSlice";
 
 
 function TeacherDashpord() {
@@ -41,6 +42,7 @@ function TeacherDashpord() {
 
   
   const { data: teacher = {} } = useGetTeacherQuery();
+  const { data: requests = [] } = useGetStudentRequestQuery();
 
   
   const [userError, setUserError] = useState(null);
@@ -262,12 +264,12 @@ function TeacherDashpord() {
    <Link to ='/pending'>
               <FontAwesomeIcon
                 icon={faBell}
-                className=" relative h-6 w-6  text-white cursor-pointer ml-9 "
+                className=" relative h-7 w-7 text-white cursor-pointer ml-9 hover:text-yellow-200"
               />
              </Link>
-             
-             <span className=" absolute cursor-pointer ml-9 mt-4 text-red-600 font-semibold">1</span>
-      
+            {     requests.length !== 0 &&
+             <span className=" absolute w-4 h-4 cursor-pointer ml-9 mt-3 text-white bg-red-500 rounded-full pl-1 text-xs  font-semibold">{requests.length}</span>
+            }
             </div>
           </div>
           </div>

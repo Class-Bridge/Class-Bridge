@@ -42,6 +42,8 @@ function TeacherDashpord() {
 
   
   const { data: teacher = {} } = useGetTeacherQuery();
+ 
+
 console.log("teacher", teacher)
 
   const { data: requests = [] } = useGetStudentRequestQuery();

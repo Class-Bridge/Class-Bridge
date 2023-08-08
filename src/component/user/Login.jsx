@@ -6,14 +6,16 @@ import {
   useSloginMutation,
   useTloginMutation,
 } from "../../store/api/AuthSlice";
+import { HiEye, HiEyeOff } from "react-icons/hi";
 
 const Login = () => {
-  
-
   const navigate = useNavigate();
   const [tlogin, { error = {}, success }] = useTloginMutation();
   const [slogin, { err = {} }] = useSloginMutation();
   const [loginErrror, setLoginError] = useState(null);
+  const [change, setChange] = useState(true);
+
+  const [role, setRole] = useState("teacher");
 
   const initialValues = {
     email: "",
@@ -24,7 +26,13 @@ const Login = () => {
     email: Yup.string()
       .email("Invalid email format")
       .required("Email is required"),
-    password: Yup.string().required("Password is required"),
+    password: Yup.string()
+      .required("Password is required")
+
+      .min(8, "Password must be 8 characters long")
+      .matches(/[0-9]/, "Password requires a number")
+      .matches(/[a-z]/, "Password requires a lowercase letter")
+      .matches(/[A-Z]/, "Password requires a uppercase letter"),
   });
 
   const handleSubmit = (values) => {
@@ -74,79 +82,90 @@ const Login = () => {
   }, [err]);
 
   return (
-    <div className="w-full grid gap-8 md:flex md:grid-cols-2 md:max-w-5xl lg:max-w-7xl">
-      <div className="flex mx-auto justify-center items-center md:block">
-        <div className="md:shrink-0">
+    <div className="lg:w-[70%] mx-auto lg:ml-[19%] p-8 shadow rounde mt-10 md:w-1/2 font-mono  ">
+      <div className="grid grid-cols-1 lg:grid-cols-2 md:grid-cols ">
+        <div className="flex flex-col justify-center items-center gap-6  bg-red-400  rounded-lg text-white">
+          {/* <img className="w-96 h-100 mx-auto " src="/src/assets/login.png" /> */}
           <img
-            src="/src/assets/class pridge.JPG"
-            className="h-32 w- md:h-full md:w-full lg:h-full lg:w-screen md:mb-3 lg:mb-0"
-            alt="ClassBridge"
+            className="w-96 h-100 mx-auto "
+            src="/src/assets/login-cuate.png"
           />
+          <span className="font-normal text-center text-xl lg:w-[80%] ">
+            Class Bridge Connet and Collaborate
+          </span>
+          <span className="text-x text-center lg:w-[80%] p-5 font-normal">
+            All your Class in One Place
+          </span>
         </div>
-        <div className="md:ml-4">
-          <h1 className="font-bold text-xl mx-3 md:text-3xl lg:text-4xl">
-            ClassBridge: Connect
-            <br /> and Collaborate
-          </h1>
-          <p className="my-10 text-sm lg:mt-1">All your Class in One Place</p>
-        </div>
-      </div>
-      <div className="w-full mt-3 mx-auto justify-center items-center rounded-lg bg-white p-10 shadow md:w-full lg:w-full">
-        <h4 className="mb-10 text-2xl font-bold">Login</h4>
         <Formik
           initialValues={initialValues}
           validationSchema={validationSchema}
           onSubmit={handleSubmit}
           className=""
         >
-          <Form className="w-full mx-auto justify-center items-center md:w-full">
-            <div className="mb-5">
+          <Form className="flex flex-col justify-center items-start space-y-6 p-5 ">
+            <div className="">
               {loginErrror && <div className="text-red-500">{loginErrror}</div>}
             </div>
-            <label className="text-sm mb-2 md:mb-5">Enter Your Email</label>
-            <div className="mb-2 md:mb-5">
+
+            <Field
+              as="select"
+              className="p-3 rounded shadow w-full "
+              name="role"
+              value={role}
+            >
+              <option onClick={() => setRole("teacher")} value="teacher">
+                Teacher
+              </option>
+              <option onClick={() => setRole("student")} value="student">
+                Student
+              </option>
+            </Field>
+            <Field
+              className="p-3 rounded shadow w-full "
+              type="text"
+              placeholder="Enter Your Email "
+              name="email"
+            />
+            <ErrorMessage
+              name="email"
+              component="div"
+              className="text-red-500 "
+            />
+            <div className="relative w-full">
               <Field
-                type="text"
-                id="email"
-                name="email"
-                placeholder="Email"
-                className="w-full rounded-3xl border-2 border-gray-300 p-3 shadow"
-              />
-              <ErrorMessage
-                name="email"
-                component="div"
-                className="text-red-500"
-              />
-            </div>
-            <label className="text-sm mb-2 md:mb-5">Password</label>
-            <div className="mb-2 md:mb-5">
-              <Field
-                type="password"
+                type={`${change ? "password" : "text"}`}
+                // type= "password"
                 id="password"
                 name="password"
-                placeholder="Password"
-                className="w-full rounded-3xl border-1 border-gray-300 p-3 shadow"
+                placeholder="Enter your password"
+                className=" rounded shadow w-full   p-3 mt-6  "
               />
               <ErrorMessage
                 name="password"
                 component="div"
-                className="text-red-500"
+                className="text-left text-red-400"
               />
+              <div
+                onClick={() => setChange(!change)}
+                className="cursor-pointer absolute top-10 right-4 text-[#555]"
+              >
+                {change ? <HiEye /> : <HiEyeOff />}
+              </div>
             </div>
             <button
+              className="p-3 rounded shadow w-full bg-red-400 text-[#fff]  font-medium text-lg"
               type="submit"
-              className="w-full mt-4 rounded-3xl bg-red-400 px-8 py-3 text-white hover:bg-red-500"
             >
               Login
             </button>
-            <div>
-              <span className="text-sm mb-2 md:mb-5">
-                Forgot Your Password?
-              </span>
-            </div>
-            <div className="mt-1">
-              <Link to="/teacher/login/register" className="text-blue-500 mx-5">
-                Create an account
+            <div className="flex justify-center mt-5 text-base text-center lg:w-[80%] space-x-2">
+              <p className="text-sm ">Don't have account?</p>
+              <Link
+                to="/teacher/login/register"
+                className="text-sm text-red-400 font-medium "
+              >
+                Sign Up
               </Link>
             </div>
           </Form>
@@ -157,3 +176,160 @@ const Login = () => {
 };
 
 export default Login;
+
+// import { ErrorMessage, Field, Form, Formik } from "formik";
+// import * as Yup from "yup";
+// import React, { useEffect, useState } from "react";
+// import { Link, useNavigate } from "react-router-dom";
+// import { HiEye, HiEyeOff } from "react-icons/hi";
+
+// import {
+//   useSloginMutation,
+//   useTloginMutation,
+// } from "../../store/api/AuthSlice";
+
+// const Login = () => {
+
+//   const navigate = useNavigate();
+//   const [tlogin, { error = {}, success }] = useTloginMutation();
+//   const [slogin, { err = {} }] = useSloginMutation();
+//   const [loginErrror, setLoginError] = useState(null);
+//   const [change, setChange] = useState(true)
+
+//   const initialValues = {
+//     email: "",
+//     password: "",
+//   };
+
+//   const validationSchema = Yup.object({
+//     email: Yup.string()
+//       .email("Invalid email format")
+//       .required("Email is required"),
+//     password: Yup.string().required("Password is required")
+
+//     .min(8, 'Password must be 8 characters long')
+//     .matches(/[0-9]/ , 'Password requires a number')
+//     .matches(/[a-z]/, 'Password requires a lowercase letter')
+//     .matches(/[A-Z]/, 'Password requires a uppercase letter'),
+
+//   });
+
+//   const handleSubmit = (values) => {
+//     if (!loginErrror) {
+//       tlogin({
+//         email: values.email,
+//         password: values.password,
+//       })
+//         .unwrap()
+//         .then(() => {
+//           navigate("/home");
+//           window.location.reload();
+//         });
+//     }
+
+//     if (!loginErrror) {
+//       slogin({
+//         email: values.email,
+//         password: values.password,
+//       })
+//         .unwrap()
+//         .then(() => {
+//           navigate("/home");
+//           window.location.reload();
+//         });
+//     }
+//   };
+
+//   useEffect(() => {
+//     if (error.status === 401) {
+//       setLoginError("Invalid email or password");
+//     }
+
+//     if (error.status === 500) {
+//       setLoginError("Something went wrong, please try again later");
+//     }
+//   }, [error]);
+
+//   useEffect(() => {
+//     if (error.status === 401) {
+//       setLoginError("Invalid email or password");
+//     }
+
+//     if (error.status === 500) {
+//       setLoginError("Something went wrong, please try again later");
+//     }
+//   }, [err]);
+
+//   return (
+//     <div className="lg:w-[70%] mx-auto lg:ml-[19%] p-8 shadow rounde mt-10 md:w-1/2 font-mono  ">
+//     <div className="grid grid-cols-1 lg:grid-cols-2 md:grid-cols space-x-2">
+//       <div className="flex flex-col justify-center items-center gap-6  bg-red-400  rounded-lg text-white">
+//         {/* <img className="w-96 h-100 mx-auto " src="/src/assets/login.png" /> */}
+//         <img className="w-96 h-100 mx-auto " src="/src/assets/login-cuate.png" />
+//         <span className="font-normal text-center text-xl lg:w-[80%] ">
+//           Class Bridge Connet and Collaborate
+//         </span>
+//         <span className=" text-base text-center lg:w-[80%] p-4">
+//           All your Class in One Place
+//         </span>
+//       </div>
+//       <Formik
+//           initialValues={initialValues}
+//           validationSchema={validationSchema}
+//           onSubmit={handleSubmit}
+//           className=""
+//         >
+// <Form className="flex flex-col justify-center items-start space-y-6 p-5 ">
+// <div className="">
+//               {loginErrror && <div className="text-red-500">{loginErrror}</div>}
+//             </div>
+//             <Field
+//               className="p-3 rounded shadow w-full "
+//               type="text"
+//               placeholder="Enter Your Email "
+//               name="email"
+//             />
+//             <ErrorMessage
+//               name="email"
+//               component="div"
+//               className="text-red-500 "
+//             />
+//           <div className="relative w-full">
+//                 <Field
+//                   type={`${change ? 'password' : 'text'}`}
+//                   // type= "password"
+//                   id="password"
+//                   name="password"
+//                   placeholder="Enter your password"
+//                   className=" rounded shadow w-full   p-3 mt-6  "
+//                 />
+//                 <ErrorMessage
+//                   name="password"
+//                   component="div"
+//                   className="text-left text-red-400"
+//                 />
+//                 <div onClick={() => setChange(!change)} className="cursor-pointer absolute top-10 right-4 text-[#555]">
+//                   {change ? <HiEye /> : <HiEyeOff />}
+//                 </div>
+//               </div>
+//               <button
+//               className="p-3 rounded shadow w-full bg-red-400 text-[#fff]  font-medium text-lg"
+//               type="submit"
+//             >
+//               Login
+//             </button>
+//             <div className="flex justify-center mt-5 text-base text-center lg:w-[80%] space-x-2">
+//               <p className="text-sm ">Don't have account?</p>
+//               <Link to="/teacher/login/register" className="text-sm text-red-400 font-medium ">
+//                 Sign Up
+//               </Link>
+//             </div>
+
+//           </Form>
+//         </Formik>
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default Login;

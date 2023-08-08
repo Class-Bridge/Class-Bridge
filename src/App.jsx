@@ -42,6 +42,8 @@ function App() {
               <Route path="/class/:id" element={<Description/>} />
               <Route path="/about" element={<About/>} />
               <Route path="/pending" element={<Pending/>} />
+              <Route path='/Login' element={<Login/>}/>
+
             </Routes>
         
   </div> 

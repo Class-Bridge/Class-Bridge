@@ -42,6 +42,8 @@ function TeacherDashpord() {
 
   
   const { data: teacher = {} } = useGetTeacherQuery();
+console.log("teacher", teacher)
+
   const { data: requests = [] } = useGetStudentRequestQuery();
 
   
@@ -275,7 +277,7 @@ function TeacherDashpord() {
           </div>
         </header>
         <div className=" w-full items-center ">
-          <Classes />
+          <Classes teacher={teacher} />
         </div>
       </div>
       {/* Right Sidebar (Large Screen) */}

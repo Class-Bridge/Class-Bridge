@@ -3,9 +3,13 @@ import { useGetClassesQuery } from "../store/api/ClassSlice";
 import CourseCard from "./CourseCard";
 
 
-function Courses() {
+function Courses( props) {
   const { data: classes = [] } = useGetClassesQuery();
   
+//   const currentTeacher = classes.filter(clas =>{
+// return clas.teacher_id === props.teacher.id
+//   })
+//   console.log(currentTeacher);
 
   return (
     <div className="p-4 flex-1 overflow-y-auto justify-center items-center">

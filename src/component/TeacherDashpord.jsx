@@ -28,6 +28,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import { useGetStudentQuery, useGetTeacherQuery } from "../store/api/UserSlice";
 import { useGetStudentRequestQuery } from "../store/api/ClassSlice";
+import Footer from "./Footer";
 
 
 function TeacherDashpord() {
@@ -113,6 +114,7 @@ console.log("teacher", teacher)
   };
 
   return (
+    <div>
     <div className="flex h-screen ">
       {/* Left Sidebar Overlay */}
       {isSidebarOpen && isSmallScreen && (
@@ -146,7 +148,7 @@ console.log("teacher", teacher)
         <nav className="mt-6 mx-4 ">
           <ul className="space-y-4">
             <li>
-          <Link to ='/teacher/dashpord'className="hover:bg-gray-100 hover:text-black px-4 py-2 rounded-full"> 
+          <Link to ='/'className="hover:bg-gray-100 hover:text-black px-4 py-2 rounded-full"> 
           <FontAwesomeIcon icon={faHome} className="mr-2" />
           Home</Link >
           </li>
@@ -313,6 +315,8 @@ console.log("teacher", teacher)
           </div>
         </aside>
       )}
+    </div>
+<Footer/>
     </div>
   );
 }

@@ -15,14 +15,16 @@ const Login = () => {
   const [loginErrror, setLoginError] = useState(null);
   const [change, setChange] = useState(true);
 
-  const [role, setRole] = useState("teacher");
+
 
   const initialValues = {
+    role: "",
     email: "",
     password: "",
   };
 
   const validationSchema = Yup.object({
+    role: Yup.string().required("Role must be select"),
     email: Yup.string()
       .email("Invalid email format")
       .required("Email is required"),
@@ -36,26 +38,26 @@ const Login = () => {
   });
 
   const handleSubmit = (values) => {
-    if (!loginErrror) {
+    if (values.role === "Teacher") {
       tlogin({
         email: values.email,
         password: values.password,
       })
         .unwrap()
         .then(() => {
-          navigate("/home");
-          window.location.reload();
+          navigate("/teacher/dashpord");
+          window.location.reload(); 
         });
     }
-
-    if (!loginErrror) {
+    if (values.role === "Student") {
+    
       slogin({
         email: values.email,
         password: values.password,
       })
         .unwrap()
         .then(() => {
-          navigate("/home");
+          navigate("/student/dashpord"); 
           window.location.reload();
         });
     }
@@ -72,11 +74,11 @@ const Login = () => {
   }, [error]);
 
   useEffect(() => {
-    if (error.status === 401) {
+    if (err.status === 401) {
       setLoginError("Invalid email or password");
     }
 
-    if (error.status === 500) {
+    if (err.status === 500) {
       setLoginError("Something went wrong, please try again later");
     }
   }, [err]);
@@ -112,15 +114,16 @@ const Login = () => {
               as="select"
               className="p-3 rounded shadow w-full "
               name="role"
-              value={role}
-            >
-              <option onClick={() => setRole("teacher")} value="teacher">
-                Teacher
-              </option>
-              <option onClick={() => setRole("student")} value="student">
-                Student
-              </option>
+              placeholder="Role"
+            > <option></option>
+            <option value="Teacher">Teacher</option>                
+            <option value="Student">Student</option>
             </Field>
+            <ErrorMessage
+                name="role"
+                component="div"
+                className="text-red-500"
+              />
             <Field
               className="p-3 rounded shadow w-full "
               type="text"

@@ -8,6 +8,7 @@ import {
 import { useGetClassesQuery, useRequestClassMutation }  from "../store/api/ClassSlice";
 import { Link, Navigate, useNavigate, useParams } from "react-router-dom";
 import Header from "./Header";
+import Footer from "./Footer";
 
 
 function Description () {
@@ -78,6 +79,7 @@ function Description () {
 </div>
 
       </div>
+      <Footer/>
     </div>
   );
 }

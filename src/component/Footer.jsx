@@ -11,7 +11,7 @@ return(
         </div>
 
         <div>
-        <h1 className="md:text-xl">copyight &copy; ClassBrige</h1>
+        <h1 className="md:text-xl">Copyright &copy;ClassBridge</h1>
         </div>
 
         

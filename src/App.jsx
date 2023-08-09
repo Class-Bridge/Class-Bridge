@@ -25,13 +25,13 @@ import { useGetStudentQuery, useGetTeacherQuery } from "./store/api/UserSlice";
 
 function App() {
 
+  
+  
+ 
+
   const { data: teacher = {} } = useGetTeacherQuery();
-  const { data: student = {} } = useGetStudentQuery();
-  console.log('Ibraa', teacher);
-  console.log('Hassan', student);
-
-
   const teacherObj = Object.keys(teacher).length !== 0
+
 
 
   const [user, setUser] = useState(null);
@@ -52,7 +52,7 @@ function App() {
  <Route element={<PrivateRoute/>}>  
 
 
- {teacherObj && (
+ { teacherObj &&
     <>
               <Route path="/addClass" element={<AddClass />} />
               <Route path="/edit/:id" element={<EditClass />} />
@@ -61,7 +61,6 @@ function App() {
               <Route path="/teacher/profile" element={<Tprofile />} />
               <Route path="/teacher/approve/:id" element={<Approve />} />
       </>
- )
  }
               <Route path="/student/profile" element={<Sprofile />} />
               <Route path="/student/classes" element={<MyClasses />} />
@@ -81,7 +80,7 @@ function App() {
               
   </div> 
    <div>
-     <Footer />
+     {/* <Footer /> */}
    </div>
    </>
   );

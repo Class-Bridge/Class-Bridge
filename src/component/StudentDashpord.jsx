@@ -21,12 +21,16 @@ import {
   faAddressCard,
   faSignInAlt
 } from "@fortawesome/free-solid-svg-icons";
-import Classes from "./Classes";
+import Sclasses from "./Sclasses";
 // import { courses } from "./Courses";
 import Pagination from "./Pagination";
 import { Link, useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import { useGetStudentQuery, useGetTeacherQuery } from "../store/api/UserSlice";
+import Footer from "./Footer";
+
+
+
 
 
 function StudentDashpord() {
@@ -97,6 +101,8 @@ function StudentDashpord() {
   };
 
   return (
+
+    <div>
     <div className="flex h-screen ">
       {/* Left Sidebar Overlay */}
       {isSidebarOpen && isSmallScreen && (
@@ -128,7 +134,7 @@ function StudentDashpord() {
         <nav className="mt-6 mx-4 ">
           <ul className="space-y-4">
             <li>
-          <Link to ='/student/dashpord'className="hover:bg-gray-100 hover:text-black px-4 py-2 rounded-full"> 
+          <Link to ='/'className="hover:bg-gray-100 hover:text-black px-4 py-2 rounded-full"> 
           <FontAwesomeIcon icon={faHome} className="mr-2" />
           Home</Link >
           </li>
@@ -248,7 +254,7 @@ function StudentDashpord() {
           </div>
         </header>
         <div className=" w-full items-center ">
-          <Classes />
+          <Sclasses />
         </div>
       </div>
       {/* Right Sidebar (Large Screen) */}
@@ -283,6 +289,10 @@ function StudentDashpord() {
         </aside>
       )}
     </div>
+
+    <Footer/>
+    </div>
+
   );
 }
 

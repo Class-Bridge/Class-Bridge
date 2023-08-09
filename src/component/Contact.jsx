@@ -4,6 +4,7 @@ import { ErrorMessage, Field, Formik, Form } from 'formik'
 import * as Yup from "yup";
 import {faContactCard, faPhone, faEnvelope} from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Footer from './Footer';
 
 const Contact = () => {
 
@@ -32,6 +33,7 @@ const Contact = () => {
 
 
   return (
+    <div>
     <div className="bg-white  p-4  max-w-5xl mx-auto">
       <Header/>
       <div className="  rounded-xl mx-auto mt-8 opacity-60 space-y-4 bg-green-500 py-4 w-full">
@@ -179,9 +181,10 @@ const Contact = () => {
       </div>
      
       </div>
-      </div>
       
-
+      </div>
+      <Footer/>
+      </div>
   )
 }
 

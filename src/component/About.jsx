@@ -1,11 +1,12 @@
 import React from 'react'
 import Header from './Header'
 import {FaUserTie} from "react-icons/fa";
+import Footer from './Footer';
 
 const About = () => {
 
   return (
-
+   <div>
     <div className="bg-white  p-4  max-w-5xl mx-auto">
       <Header/>
       <div className="  rounded-xl mx-auto mt-8 opacity-60 space-y-4 bg-green-500 py-4 w-full">
@@ -111,7 +112,7 @@ const About = () => {
         <div className='flex flex-col items-center justify-center space-y-4'> 
         <img
         className=" w-20 h-full  object-cover rounded-lg mb-4"
-        src='/src/assets/ibr.JPEG'
+        src=''
         alt=""
       />
           <p className='font-bold'>Ali Omar</p>
@@ -120,7 +121,7 @@ const About = () => {
         <div className='flex flex-col items-center justify-center space-y-4'> 
         <img
         className=" w-20 h-full  object-cover rounded-lg mb-4"
-        src='/src/assets/ibr.JPEG'
+        src=''
         alt=""
       />
           <p className='font-bold'>Hassan</p>
@@ -129,7 +130,7 @@ const About = () => {
         <div className='flex flex-col items-center justify-center space-y-4'> 
         <img
         className=" w-20 h-full  object-cover rounded-lg mb-4"
-        src='/src/assets/ibr.JPEG'
+        src=''
         alt=""
       />
           <p className='font-bold'>AbdiKani</p>
@@ -143,6 +144,8 @@ const About = () => {
       </div>
       </div>
       
+      </div>
+      <Footer/>
       </div>
       
 

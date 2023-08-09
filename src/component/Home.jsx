@@ -21,12 +21,13 @@ import {
   faAddressCard,
   faSignInAlt
 } from "@fortawesome/free-solid-svg-icons";
-import Classes from "./Classes";
+import Sclasses from "./Sclasses";
 // import { courses } from "./Courses";
 import Pagination from "./Pagination";
 import { Link, useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import { useGetStudentQuery, useGetTeacherQuery } from "../store/api/UserSlice";
+import Footer from "./Footer";
 
 
 function Home() {
@@ -35,7 +36,13 @@ function Home() {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
 
  
+  const { data: teacher = {} } = useGetTeacherQuery();
+  const { data: student = {} } = useGetStudentQuery();
 
+
+
+  const studentObj = Object.keys(student).length !== 0
+  const teacherObj = Object.keys(teacher).length !== 0
   
 
  
@@ -99,6 +106,7 @@ function Home() {
   };
 
   return (
+    <div>
     <div className="flex h-screen ">
       {/* Left Sidebar Overlay */}
       {isSidebarOpen && isSmallScreen && (
@@ -155,14 +163,21 @@ function Home() {
               <FontAwesomeIcon icon={faCheck} className="mr-2" />
               Grades
             </li> */}
-        
-            
-
-            {/* <li className="hover:bg-gray-100 hover:text-black px-4 py-2 rounded-full">
-              <FontAwesomeIcon icon={faUserGroup} className="mr-2" />
-              Teachers
-            </li> */}
-           
+      {teacherObj &&
+            <li className="hover:bg-gray-100 hover:text-black px-4 py-2 rounded-full">
+            <Link to ='/teacher/dashpord'>
+              <FontAwesomeIcon icon={faUser} className="mr-2" />
+              Teacher
+              </Link>
+            </li>
+}       {studentObj &&
+            <li className="hover:bg-gray-100 hover:text-black px-4 py-2 rounded-full">
+            <Link to ='/student/dashpord'>
+              <FontAwesomeIcon icon={faUser} className="mr-2" />
+              Student
+              </Link>
+            </li>
+}
           </ul>
         </nav>
         <div className="mt-auto mx-4 mb-14">
@@ -235,15 +250,12 @@ function Home() {
           <div className="flex items-center ml-9 md:mr-0">
             <div className="flex items-center justify-around">
               
-              
+            {!user &&
             <Link to ='/login' className=" ml-36 text-white hover:text-blue-300
                px-4 py-2 rounded-full flex items-center">
               <FontAwesomeIcon icon={faSignInAlt} className="mr-2" />
               Login</Link>
-  
-
-             
-              
+         }
 
             </div>
           </div>
@@ -251,7 +263,7 @@ function Home() {
           </div>
         </header>
         <div className=" w-full items-center ">
-          <Classes />
+          <Sclasses />
         </div>
       </div>
       {/* Right Sidebar (Large Screen) */}
@@ -285,6 +297,10 @@ function Home() {
           </div>
         </aside>
       )}
+      
+    </div>
+    
+    <Footer />
     </div>
   );
 }

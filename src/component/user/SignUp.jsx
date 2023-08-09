@@ -195,12 +195,12 @@ const SignUp = () => {
   const [registerError, setRegisterError] = useState(null);
   const [change, setChange] = useState(true);
 
-  const [role, setRole] = useState("teacher");
 
   const initialValues = {
     first_name: "",
     last_name: "",
     email: "",
+    role:  "",
     password: "",
   };
   const validationSchema = Yup.object({
@@ -209,6 +209,7 @@ const SignUp = () => {
     email: Yup.string()
       .email("Invalid email format")
       .required("Email is required"),
+   role: Yup.string().required("Role must be select"),
     password: Yup.string()
       .required("Password is required")
       .min(8, "Password must be 8 characters long")
@@ -220,7 +221,7 @@ const SignUp = () => {
   const handleSubmit = (values) => {
     console.log(values);
 
-    if (role === "teacher") {
+    if (values.role === "Teacher") {
       tsignUp({
         first_name: values.first_name,
         last_name: values.first_name,
@@ -255,7 +256,7 @@ const SignUp = () => {
     }
   }, [err]);
 
-  console.log(role);
+
 
   return (
     <div className="w-full lg:w-[70%] mx-auto lg:ml-[19%] p-8 shadow rounded mt-10 font-mono justify-center">
@@ -315,19 +316,23 @@ const SignUp = () => {
               className="text-red-500"
             />
 
-            <Field
-              as="select"
-              className="p-3 rounded shadow w-full "
-              name="role"
-              value={role}
-            >
-              <option onClick={() => setRole("teacher")} value="teacher">
-                Teacher
-              </option>
-              <option onClick={() => setRole("student")} value="student">
-                Student
-              </option>
+              <Field
+                as="select"
+                 name="role"
+                 id="role"
+                placeholder="Role"
+                className="w-full rounded-3xl border border-gray-300 p-3 shadow"
+              >
+
+             <option></option>
+              <option value="Teacher">Teacher</option>                
+              <option value="Student">Student</option>
             </Field>
+            <ErrorMessage
+                name="role"
+                component="div"
+                className="text-red-500"
+              />
 
             <div className="relative w-full">
               <Field

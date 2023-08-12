@@ -282,6 +282,7 @@ console.log("teacher", teacher)
         </header>
         <div className=" w-full items-center ">
           <Classes teacher={teacher} />
+          <Footer/>
          
         </div>
       </div>

@@ -80,7 +80,7 @@ function App() {
               
   </div> 
    <div className="w-full">
-     <Footer />
+     {/* //<Footer /> */}
    </div>
    </>
   );

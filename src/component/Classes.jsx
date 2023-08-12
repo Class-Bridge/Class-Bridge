@@ -13,7 +13,7 @@ return clas.teacher_id === props.teacher.id
 
   return (
     <div className="p-4 flex-1 overflow-y-auto justify-center items-center">
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 ">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 lg:grid lg:grid-cols-4  ">
         {currentTeacher?.map((course) => (
           <div key={course.id} className=" p-2 items-center justify-center">
             <CourseCard

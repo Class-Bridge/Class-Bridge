@@ -265,6 +265,7 @@ function Home() {
         <div className=" w-full items-center ">
           
           <Sclasses />
+          <Footer/>
 
         </div>
       </div>

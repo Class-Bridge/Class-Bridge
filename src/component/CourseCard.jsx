@@ -59,7 +59,7 @@ function CourseCard({ image, title, description, courseId}) {
     <div className="bg-white rounded-lg shadow-md p-3 ">
       
 <>
-<div className="items-center justify-center ml-10 md:ml-1">
+<div className="items-center justify-center ml-10 md:ml-1 lg:ml-4">
       <img
         className="w-56 h-32  rounded-lg mb-4"
         src={image}

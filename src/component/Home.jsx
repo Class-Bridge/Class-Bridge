@@ -263,10 +263,9 @@ function Home() {
           </div>
         </header>
         <div className=" w-full items-center ">
-          <div>
+          
           <Sclasses />
-          </div>
-          <Footer/>
+
         </div>
       </div>
       {/* Right Sidebar (Large Screen) */}

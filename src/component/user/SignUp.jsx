@@ -264,7 +264,7 @@ const SignUp = () => {
         <div className="bg-red-400 rounded-lg  lg:w-[100%]">
           <img
             className="w-full h-[100%] object-fill mx-auto "
-            src="\src\assets\Signup.png"
+            src="https://res.cloudinary.com/duzm3jyov/image/upload/v1691843859/Ibraa/pvf4avu0h5drimin77eq.jpg"
           />
         </div>
         <Formik

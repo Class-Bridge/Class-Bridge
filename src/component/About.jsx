@@ -61,7 +61,7 @@ const About = () => {
       </p>
       <img
         className="opacity-40 w-[550px] h-full  object-cover rounded-lg mb-4 md:ml-4"
-        src='/src/assets/ud.PNG'
+        src='https://ca.slack-edge.com/T01EGNU0K5Y-U01EDL7QM8V-ae24fc8ebe71-512'
         alt=""
       />
                 
@@ -84,7 +84,7 @@ const About = () => {
         <div className='flex flex-col items-center justify-center space-y-4 mt-6'> 
         <img
         className=" w-20 h-full  object-cover rounded-lg mb-4"
-        src='/src/assets/ibr.JPEG'
+        src='https://res.cloudinary.com/duzm3jyov/image/upload/v1691843811/Ibraa/y2m0uen7qsqt4a1kncah.jpg'
         alt=""
       />
               
@@ -94,7 +94,7 @@ const About = () => {
         <div className='flex flex-col items-center justify-center space-y-4'> 
         <img
         className=" w-20 h-full  object-cover rounded-lg mb-4"
-        src='/src/assets/moh.JPEG'
+        src='https://res.cloudinary.com/duzm3jyov/image/upload/v1691843064/nki7dverjddax9nvr5fv.jpg'
         alt=""
       />
           <p className='font-bold'>Mohamed Abdullahi</p>
@@ -103,7 +103,7 @@ const About = () => {
         <div className='flex flex-col items-center justify-center space-y-9 md:space-y-2'> 
         <img
         className=" w-20 h-full  object-cover rounded-lg mb-4"
-        src='/src/assets/shak.JPEG'
+        src='https://res.cloudinary.com/duzm3jyov/image/upload/v1691843128/i0iekzk3wwjuchlckomg.jpg'
         alt=""
       />
           <p className='font-bold'>Abdishakur</p>
@@ -144,7 +144,7 @@ const About = () => {
       </div>
       
       </div>
-      <Footer/>
+      
       </div>
       
 

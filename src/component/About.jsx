@@ -19,7 +19,7 @@ const About = () => {
       />
       </div>
       </div>
-      <div className='md: grid md:grid-cols-2 md:space-x-6'>
+      <div className=''>
       <div className=" max-w-xl bg-white grounded-md shadow-md mx-auto mt-20 rounded-md
        items-center justify-center space-y-6 ">
         <div className=" py-2 space-y-10 text-center ">
@@ -60,7 +60,7 @@ const About = () => {
       who was really the reason for us to come here and build this very beautiful project.
       </p>
       <img
-        className="opacity-30 w-[450px] h-full  object-cover rounded-lg mb-4 md:ml-2"
+        className="opacity-40 w-[550px] h-full  object-cover rounded-lg mb-4 md:ml-4"
         src='/src/assets/ud.PNG'
         alt=""
       />
@@ -110,29 +110,28 @@ const About = () => {
 
         </div>
         <div className='flex flex-col items-center justify-center space-y-4'> 
-        <img
+        <FaUserTie className='w-24 h-24 border border-solid p-2'/>
+        {/* <img
         className=" w-20 h-full  object-cover rounded-lg mb-4"
         src=''
-        alt=""
-      />
+        alt="" */}
+    
           <p className='font-bold'>Ali Omar</p>
 
         </div>
         <div className='flex flex-col items-center justify-center space-y-4'> 
-        <img
+        <FaUserTie className='w-24 h-24 border border-solid p-2'/>
+        {/* <img
         className=" w-20 h-full  object-cover rounded-lg mb-4"
         src=''
         alt=""
-      />
+      /> */}
           <p className='font-bold'>Hassan</p>
 
         </div>
         <div className='flex flex-col items-center justify-center space-y-4'> 
-        <img
-        className=" w-20 h-full  object-cover rounded-lg mb-4"
-        src=''
-        alt=""
-      />
+        <FaUserTie className='w-24 h-24 border border-solid p-2'/>
+       
           <p className='font-bold'>AbdiKani</p>
 
         </div>

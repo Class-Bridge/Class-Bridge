@@ -90,7 +90,7 @@ const Login = () => {
           {/* <img className="w-96 h-100 mx-auto " src="/src/assets/login.png" /> */}
           <img
             className="w-96 h-100 mx-auto "
-            src="/src/assets/login-cuate.png"
+            src="https://res.cloudinary.com/duzm3jyov/image/upload/v1691843832/Ibraa/dbq9asar9baknkj7b11q.jpg"
           />
           <span className="font-normal text-center text-xl lg:w-[80%] ">
             Class Bridge Connet and Collaborate

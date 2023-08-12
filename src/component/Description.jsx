@@ -79,7 +79,7 @@ function Description () {
 </div>
 
       </div>
-      <Footer/>
+   
     </div>
   );
 }

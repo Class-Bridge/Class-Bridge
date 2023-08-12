@@ -79,8 +79,8 @@ function App() {
 </Routes>
               
   </div> 
-   <div>
-     {/* <Footer /> */}
+   <div className="w-full">
+     <Footer />
    </div>
    </>
   );

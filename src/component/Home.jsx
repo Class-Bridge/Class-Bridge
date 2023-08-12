@@ -106,7 +106,7 @@ function Home() {
   };
 
   return (
-    <div>
+    
     <div className="flex h-screen ">
       {/* Left Sidebar Overlay */}
       {isSidebarOpen && isSmallScreen && (
@@ -263,7 +263,10 @@ function Home() {
           </div>
         </header>
         <div className=" w-full items-center ">
+          <div>
           <Sclasses />
+          </div>
+          <Footer/>
         </div>
       </div>
       {/* Right Sidebar (Large Screen) */}
@@ -300,8 +303,8 @@ function Home() {
       
     </div>
     
-    <Footer />
-    </div>
+
+    
   );
 }
 

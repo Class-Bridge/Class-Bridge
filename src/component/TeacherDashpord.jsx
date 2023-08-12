@@ -114,7 +114,7 @@ console.log("teacher", teacher)
   };
 
   return (
-    <div>
+   
     <div className="flex h-screen ">
       {/* Left Sidebar Overlay */}
       {isSidebarOpen && isSmallScreen && (
@@ -282,6 +282,7 @@ console.log("teacher", teacher)
         </header>
         <div className=" w-full items-center ">
           <Classes teacher={teacher} />
+          <Footer/>
         </div>
       </div>
       {/* Right Sidebar (Large Screen) */}
@@ -316,8 +317,8 @@ console.log("teacher", teacher)
         </aside>
       )}
     </div>
-<Footer/>
-    </div>
+
+    
   );
 }
 

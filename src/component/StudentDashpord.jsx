@@ -102,7 +102,6 @@ function StudentDashpord() {
 
   return (
 
-    <div>
     <div className="flex h-screen ">
       {/* Left Sidebar Overlay */}
       {isSidebarOpen && isSmallScreen && (
@@ -255,6 +254,7 @@ function StudentDashpord() {
         </header>
         <div className=" w-full items-center ">
           <Sclasses />
+          <Footer/>
         </div>
       </div>
       {/* Right Sidebar (Large Screen) */}
@@ -290,8 +290,8 @@ function StudentDashpord() {
       )}
     </div>
 
-    <Footer/>
-    </div>
+    
+   
 
   );
 }

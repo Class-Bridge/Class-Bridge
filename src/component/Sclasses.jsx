@@ -2,6 +2,7 @@ import React from "react";
 import { useGetClassesQuery } from "../store/api/ClassSlice";
 import CourseCard from "./CourseCard";
 import ScourseCard from "./ScourseCard";
+import Footer from "./Footer";
 
 
 function Sclasses () {
@@ -26,7 +27,7 @@ function Sclasses () {
             />
           </div>
         ))}
-        
+       
       </div>
     </div>
   );

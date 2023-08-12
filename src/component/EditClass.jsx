@@ -44,11 +44,11 @@ const EditClass = () => {
       class_id: Number(params.id),
       updatedClass: values
     })
-      // .unwrap()
-      // .then(() => {
-      //   navigate("/teacher/dashpord");
-      //   // window.location.reload();
-      // });
+      .unwrap()
+      .then(() => {
+        navigate("/teacher/dashpord");
+        // window.location.reload();
+      });
   };
   return (
     <>

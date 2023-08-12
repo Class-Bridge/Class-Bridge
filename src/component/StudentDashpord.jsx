@@ -254,6 +254,7 @@ function StudentDashpord() {
         </header>
         <div className=" w-full items-center ">
           <Sclasses />
+          <Footer/>
      
         </div>
       </div>
